@@ -8,6 +8,7 @@ terraform {
 }
 
 provider "google" {
-  project     = "opentelemetry-benchmark"
-  region      = "europe-west3"
+  project     = var.project_name
+  region      = var.region
+  credentials = var.google_credential_file
 }
