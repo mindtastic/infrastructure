@@ -33,6 +33,8 @@ resource "google_container_cluster" "primary" {
     master_ipv4_cidr_block  = local.control_plane_ipv4_range
   }
 
+  master_authorized_networks_config {}
+
   depends_on = [
     google_compute_subnetwork.vpc_subnet
   ]
