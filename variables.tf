@@ -1,13 +1,13 @@
 variable "google_credential_file" {
-  type = string
+  type        = string
   description = "Authentication key for Google Cloud (JSON)"
-  default = ""
+  default     = ""
 }
 
 variable "project_name" {
-  type = string
+  type        = string
   description = "Project name on Google Cloud."
-  default = "opentelemetry-benchmark"
+  default     = "opentelemetry-benchmark"
 }
 
 variable "region" {
