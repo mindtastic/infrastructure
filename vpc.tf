@@ -1,7 +1,9 @@
 locals {
-  k8s_node_subnet    = "10.10.0.0/28"
-  k8s_pod_subnet     = "10.11.0.0/16"
-  k8s_service_subnet = "10.12.0.0/16"
+  k8s_node_subnet         = "10.10.0.0/28"
+  k8s_pod_subnet_name     = "vpc-pod-range"
+  k8s_pod_subnet          = "10.11.0.0/16"
+  k8s_service_subnet_name = "vpc-service-range"
+  k8s_service_subnet      = "10.12.0.0/16"
 }
 
 resource "google_compute_network" "vpc_network" {
@@ -18,11 +20,11 @@ resource "google_compute_subnetwork" "vpc_subnet" {
   network                  = google_compute_network.vpc_network.id
   private_ip_google_access = true
   secondary_ip_range {
-    range_name    = "vpc-pod-range"
+    range_name    = local.k8s_pod_subnet_name
     ip_cidr_range = local.k8s_pod_subnet
   }
   secondary_ip_range {
-    range_name    = "vpc-service-range"
+    range_name    = local.k8s_service_subnet_name
     ip_cidr_range = local.k8s_service_subnet
   }
 }

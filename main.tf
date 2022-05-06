@@ -20,13 +20,13 @@ resource "google_container_cluster" "primary" {
 
   ip_allocation_policy {
     # TODO: Don't hardcode names here
-    cluster_secondary_range_name  = "vpc-pod-range"
-    services_secondary_range_name = "vpc-service-range"
+    cluster_secondary_range_name  = local.k8s_pod_subnet_name
+    services_secondary_range_name = local.k8s_service_subnet_name
   }
 
   private_cluster_config {
     enable_private_nodes    = true
-    enable_private_endpoint = false
+    enable_private_endpoint = true
     master_ipv4_cidr_block  = "172.16.0.0/28"
   }
 
