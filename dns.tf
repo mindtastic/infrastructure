@@ -1,6 +1,6 @@
 resource "cloudflare_record" "mindtastic_lol" {
-  for_each = toset(google_dns_managed_zone.mindtastic_lol.*.dns_name)
-
+  for_each = toset(google_dns_managed_zone.mindtastic_lol.*.name_servers)
+  
   zone_id = var.cloudflare_zone_id
   name    = "@"
   value   = each.key
