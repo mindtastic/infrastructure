@@ -17,4 +17,5 @@ resource "cloudflare_record" "live_mindtastic_lol" {
   value   = google_dns_managed_zone.live.name_servers[count.index]
   type    = "NS"
   ttl     = 3600
+
 }
