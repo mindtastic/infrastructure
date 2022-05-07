@@ -23,7 +23,7 @@ variable "cloudflare_api_token" {
 }
 
 variable "cloudflare_zone_id" {
-  type = string
+  type        = string
   description = "ZoneID on Cloudflare where mindtastic.lol is hosted."
-  default = "9ad94d6aa6113ebb64214ec50fec17bf"
+  default     = "9ad94d6aa6113ebb64214ec50fec17bf"
 }

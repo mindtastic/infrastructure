@@ -5,7 +5,7 @@ terraform {
       version = "4.20.0"
     }
     cloudflare = {
-      source = "cloudflare/cloudflare"
+      source  = "cloudflare/cloudflare"
       version = "~> 3.0"
     }
   }
