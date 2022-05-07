@@ -11,6 +11,6 @@ resource "cloudflare_record" "mindtastic_lol" {
 
 resource "google_dns_managed_zone" "mindtastic_lol" {
   name        = "mindtastic-root-zone"
-  dns_name    = "mindtastic.com."
+  dns_name    = "mindtastic.lol."
   description = "The base DNS zone, delegated from Cloudflare"
 }
