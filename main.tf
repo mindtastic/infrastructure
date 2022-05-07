@@ -1,6 +1,6 @@
 locals {
   control_plane_ipv4_range = "172.16.0.0/28"
-  tfc_runner_ip = "${chomp(data.http.tfc_runner_ip.body)}/32"
+  tfc_runner_ip            = "${chomp(data.http.tfc_runner_ip.body)}/32"
 }
 
 resource "google_service_account" "default" {
@@ -36,7 +36,7 @@ resource "google_container_cluster" "primary" {
 
   master_authorized_networks_config {
     cidr_blocks {
-      cidr_block = local.tfc_runner_ip 
+      cidr_block   = local.tfc_runner_ip
       display_name = "Terraform Cloud Runner"
     }
   }
