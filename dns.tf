@@ -27,5 +27,5 @@ resource "google_dns_record_set" "live" {
 
   managed_zone = google_dns_managed_zone.root.name
 
-  rrdatas = [toset(google_dns_managed_zone.live.name_servers)]
+  rrdatas = toset(google_dns_managed_zone.live.name_servers)
 }
