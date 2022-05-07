@@ -8,3 +8,22 @@ Running Terraform in a team presents some challenges like shared-state and crede
 Creating a pull request in this repository will trigger a speculative planning feature of Terraform Cloud, hence a plan for the code in the pull request will be generated. This is equivalent to run `terraform plan` on your local machine.
 
 The actual execution of the plan must be started manually in the Terraform Cloud user interface. If you do not have access, please contact the infrastructure team.
+
+## Setup
+
+### Requirements
+
+    brew install --cask google-cloud-sdk
+    brew install terraform
+
+## To run
+
+First, authenticate with Google Cloud
+
+    terraform init
+    terraform plan
+    terraform destroy
+
+## To test
+
+Exchange variable "google_container_cluster"
