@@ -21,11 +21,9 @@ resource "google_dns_managed_zone" "live" {
 }
 
 resource "google_dns_record_set" "live" {
-  name = "live.${google_dns_managed_zone.mindtastic_lol.dns_name}"
-  type = "NS"
-  ttl  = 300
-
+  name         = "live.${google_dns_managed_zone.mindtastic_lol.dns_name}"
+  type         = "NS"
+  ttl          = 300
   managed_zone = google_dns_managed_zone.mindtastic_lol.name
-
-  rrdatas = toset(google_dns_managed_zone.live.name_servers)
+  rrdatas      = toset(google_dns_managed_zone.live.name_servers)
 }
