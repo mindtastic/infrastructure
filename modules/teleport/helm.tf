@@ -12,7 +12,7 @@ resource "helm_release" "teleport" {
   max_history      = 3
 
   values = [
-    "${file("${path.module}/teleport.yaml")}"
+    "${file("${path.module}/values.yaml")}"
   ]
 
   set {
