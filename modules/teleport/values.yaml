@@ -170,7 +170,7 @@ initContainers: []
 # If set, will run the command as a postStart handler
 # https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/
 postStart:
-  command: ["tctl", "create", "-f", "/etc/teleport-github/github.yaml"]
+  command: ["/bin/sh","-c","until tctl create -f /etc/teleport-github/github.yaml; do sleep 1; done"]
 
 # Resources to request for each pod in the deployment
 # https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
