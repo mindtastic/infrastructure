@@ -31,18 +31,18 @@ provider "cloudflare" {
   api_token = var.cloudflare_api_token
 }
 
+data "google_client_config" "default" {}
+
 provider "helm" {
   kubernetes {
     host                   = "https://${google_container_cluster.primary.endpoint}"
-    client_certificate     = base64decode(google_container_cluster.primary.master_auth.0.client_certificate)
-    client_key             = base64decode(google_container_cluster.primary.master_auth.0.client_key)
+    token                  = data.google_client_config.default.access_token
     cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
   }
 }
 
 provider "kubernetes" {
   host                   = "https://${google_container_cluster.primary.endpoint}"
-  client_certificate     = base64decode(google_container_cluster.primary.master_auth.0.client_certificate)
-  client_key             = base64decode(google_container_cluster.primary.master_auth.0.client_key)
+  token                  = data.google_client_config.default.access_token
   cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
 }
