@@ -19,6 +19,7 @@ No modules.
 |------|------|
 | [helm_release.teleport](https://registry.terraform.io/providers/hashicorp/helm/latest/docs/resources/release) | resource |
 | [kubernetes_config_map.github](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/resources/config_map) | resource |
+| [kubernetes_service.teleport](https://registry.terraform.io/providers/hashicorp/kubernetes/latest/docs/data-sources/service) | data source |
 
 ## Inputs
 
@@ -33,4 +34,6 @@ No modules.
 
 ## Outputs
 
-No outputs.
+| Name | Description |
+|------|-------------|
+| <a name="output_teleport_public_ip"></a> [teleport\_public\_ip](#output\_teleport\_public\_ip) | n/a |
