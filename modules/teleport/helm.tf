@@ -12,7 +12,7 @@ resource "kubernetes_namespace" "teleport" {
 resource "helm_release" "teleport" {
   name             = local.teleport_release_name
   repository       = "https://charts.releases.teleport.dev"
-  chart            = "teleport/teleport-cluster"
+  chart            = "teleport-cluster"
   version          = "9.2.1"
   create_namespace = true
   namespace        = local.teleport_namespace
