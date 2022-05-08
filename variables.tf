@@ -2,7 +2,7 @@ variable "google_credential_file" {
   type        = string
   description = "Authentication key for Google Cloud (JSON)"
   default     = ""
-  sensitive = true
+  sensitive   = true
 }
 
 variable "project_name" {
@@ -21,7 +21,7 @@ variable "cloudflare_api_token" {
   type        = string
   description = "API Token generated on Leo's Cloudflare account."
   default     = ""
-  sensitive = true
+  sensitive   = true
 }
 
 variable "cloudflare_zone_id" {
