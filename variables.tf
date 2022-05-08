@@ -48,3 +48,20 @@ variable "teleport_acme_email" {
   default     = ""
   sensitive   = true
 }
+
+variable "teleport_github_client_id" {
+  type = string
+  description = "Client ID of GitHub OAuth app for Teleport login."
+}
+
+variable "teleport_github_client_secret" {
+  type = string
+  description = "Client Secret of GitHub OAuth app for Teleport login."
+  sensitive = true
+}
+
+variable "teleport_github_org" {
+  type = string
+  description = "GitHub Organisation for Teleport login."
+  default = "mindtastic"
+}
