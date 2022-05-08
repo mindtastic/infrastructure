@@ -1,3 +1,26 @@
+variable "kubernetes_cluster_endpoint" {
+  type        = string
+  description = "Endpoint of Kubernetes Cluster"
+}
+
+variable "kubernetes_client_certificate" {
+  type        = string
+  description = "Client Certificate of Kubernetes Cluster"
+  sensitive   = true
+}
+
+variable "kubernetes_client_key" {
+  type        = string
+  description = "Client Key of Kubernetes Cluster"
+  sensitive   = true
+}
+
+variable "kubernetes_cluster_ca_certificate" {
+  type        = string
+  description = "Cluster Certificate of Kubernetes Cluster"
+  sensitive   = true
+}
+
 variable "cluster_name" {
   type        = string
   description = "Name for the Kubernetes Cluster."
