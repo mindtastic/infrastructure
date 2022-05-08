@@ -13,7 +13,7 @@ resource "helm_release" "teleport" {
   name             = local.teleport_release_name
   repository       = "https://charts.releases.teleport.dev"
   chart            = "teleport/teleport-cluster"
-  version          = "6.0.1"
+  version          = "9.2.1"
   create_namespace = true
   namespace        = local.teleport_namespace
   max_history      = 3
