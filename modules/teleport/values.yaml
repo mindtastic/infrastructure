@@ -140,8 +140,12 @@ extraEnv: []
 # Extra volumes to mount into the Teleport pods
 # https://kubernetes.io/docs/concepts/storage/volumes/
 extraVolumes:
-- name: config-vol
-  mountPath: /etc/teleport
+- name: github-config
+  configMap:
+    name: teleport-github-config
+    items:
+    - key: github.yaml
+      path: github.yaml
 #- name: myvolume
 #  secret:
 #    secretName: testSecret
@@ -149,11 +153,7 @@ extraVolumes:
 # Extra volume mounts corresponding to the volumes mounted above
 extraVolumeMounts:
 - name: github-config
-  configMap:
-    name: teleport-github-config
-    items:
-    - key: github.yaml
-      path: github.yaml
+  mountPath: /etc/teleport
 #- name: myvolume
 #  mountPath: /path/on/host
 
