@@ -153,7 +153,7 @@ extraVolumes:
 # Extra volume mounts corresponding to the volumes mounted above
 extraVolumeMounts:
 - name: github-config
-  mountPath: /etc/teleport
+  mountPath: /etc/teleport-github
 #- name: myvolume
 #  mountPath: /path/on/host
 
@@ -170,7 +170,7 @@ initContainers: []
 # If set, will run the command as a postStart handler
 # https://kubernetes.io/docs/tasks/configure-pod-container/attach-handler-lifecycle-event/
 postStart:
-  command: ["tctl", "create", "-f", "/etc/teleport/github.yaml"]
+  command: ["tctl", "create", "-f", "/etc/teleport-github/github.yaml"]
 
 # Resources to request for each pod in the deployment
 # https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
