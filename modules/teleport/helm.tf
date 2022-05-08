@@ -3,6 +3,12 @@ locals {
   teleport_release_name = "teleport"
 }
 
+resource "kubernetes_namespace" "teleport" {
+  metadata {
+    name = local.teleport_namespace
+  }
+}
+
 resource "helm_release" "teleport" {
   name             = local.teleport_release_name
   repository       = "https://charts.releases.teleport.dev"
@@ -50,6 +56,10 @@ resource "kubernetes_config_map" "github" {
       teleport_github_org           = var.teleport_github_org
     })}"
   }
+
+  depends_on = [
+    kubernetes_namespace.teleport
+  ]
 }
 
 data "kubernetes_service" "teleport" {
