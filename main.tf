@@ -34,6 +34,12 @@ resource "google_container_cluster" "primary" {
     master_ipv4_cidr_block  = local.control_plane_ipv4_range
   }
 
+  master_auth {
+    client_certificate_config {
+      issue_client_certificate = true
+    }
+  }
+
   master_authorized_networks_config {
     # cidr_blocks {
     #   cidr_block   = local.tfc_runner_ip
