@@ -57,4 +57,6 @@ data "kubernetes_service" "teleport" {
     name      = local.teleport_release_name
     namespace = local.teleport_namespace
   }
+
+  depends_on = [helm_release.teleport]
 }
