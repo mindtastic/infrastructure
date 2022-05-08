@@ -41,7 +41,7 @@ provider "helm" {
   }
 }
 
-provider "kubernets" {
+provider "kubernetes" {
   host = google_container_cluster.primary.endpoint
   client_certificate     = google_container_cluster.primary.master_auth.0.client_certificate
   client_key             = google_container_cluster.primary.master_auth.0.client_key
