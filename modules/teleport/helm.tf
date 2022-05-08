@@ -1,5 +1,5 @@
 locals {
-  teleport_namespace = "teleport"
+  teleport_namespace    = "teleport"
   teleport_release_name = "teleport"
 }
 
@@ -54,7 +54,7 @@ resource "kubernetes_config_map" "github" {
 
 data "kubernetes_service" "teleport" {
   metadata {
-    name = local.teleport_release_name
+    name      = local.teleport_release_name
     namespace = local.teleport_namespace
   }
 }
