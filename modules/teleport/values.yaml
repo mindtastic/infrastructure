@@ -147,7 +147,7 @@ extraVolumes:
 #    secretName: testSecret
 
 # Extra volume mounts corresponding to the volumes mounted above
-extraVolumeMounts
+extraVolumeMounts:
 - name: github-config
   configMap:
     name: teleport-github-config
