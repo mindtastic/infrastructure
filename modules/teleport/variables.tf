@@ -15,17 +15,17 @@ variable "teleport_acme_email" {
 }
 
 variable "teleport_github_client_id" {
-  type = string
+  type        = string
   description = "Client ID of GitHub OAuth app for Teleport login."
 }
 
 variable "teleport_github_client_secret" {
-  type = string
+  type        = string
   description = "Client Secret of GitHub OAuth app for Teleport login."
-  sensitive = true
+  sensitive   = true
 }
 
 variable "teleport_github_org" {
-  type = string
+  type        = string
   description = "GitHub Organisation for Teleport login."
 }
