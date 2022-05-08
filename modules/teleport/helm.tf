@@ -1,9 +1,10 @@
 locals {
   teleport_namespace = "teleport"
+  teleport_release_name = "teleport"
 }
 
 resource "helm_release" "teleport" {
-  name             = "teleport-cluster"
+  name             = local.teleport_release_name
   repository       = "https://charts.releases.teleport.dev"
   chart            = "teleport/teleport-cluster"
   version          = "6.0.1"
@@ -48,5 +49,12 @@ resource "kubernetes_config_map" "github" {
       teleport_domain               = var.teleport_domain
       teleport_github_org           = var.teleport_github_org
     })}"
+  }
+}
+
+data "kubernetes_service" "teleport" {
+  metadata {
+    name = local.teleport_release_name
+    namespace = local.teleport_namespace
   }
 }
