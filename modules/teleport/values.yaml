@@ -176,7 +176,7 @@ postStart:
 # https://kubernetes.io/docs/concepts/configuration/manage-resources-containers/
 resources:
  requests:
-   cpu: "1"
+   cpu: "500m"
    memory: "2Gi"
 
 # Priority class name to add to the deployment
