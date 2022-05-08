@@ -5,7 +5,11 @@ resource "google_dns_managed_zone" "live" {
 }
 
 resource "cloudflare_record" "live_mindtastic_lol" {
-  # Google cloud returns four nameservers for each dns managed zone
+  # This is a workaround to a problem rooted deeply within Terraform itself:
+  # https://github.com/hashicorp/terraform/issues/30937
+  # Since Terraform does not know the length of
+  # `google_dns_managed_zone.live.name_servers` at plan time, we hardcode the number of servers here.
+  # This works until it won't. If Google returns fewer servers, apply will fail. If Google returns more, we ignore them.
   count = 4
 
   zone_id = var.cloudflare_zone_id
