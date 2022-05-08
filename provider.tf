@@ -10,6 +10,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 3.0"
     }
+     kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "2.11.0"
+    }
     helm = {
       source  = "hashicorp/helm"
       version = "2.5.1"
@@ -35,4 +39,11 @@ provider "helm" {
     client_key             = google_container_cluster.primary.master_auth.0.client_key
     cluster_ca_certificate = google_container_cluster.primary.master_auth.0.cluster_ca_certificate
   }
+}
+
+provider "kubernets" {
+  host = google_container_cluster.primary.endpoint
+  client_certificate     = google_container_cluster.primary.master_auth.0.client_certificate
+  client_key             = google_container_cluster.primary.master_auth.0.client_key
+  cluster_ca_certificate = google_container_cluster.primary.master_auth.0.cluster_ca_certificate
 }
