@@ -1,6 +1,3 @@
-# https://github.com/gravitational/teleport/issues/10352
-teleportVersionOverride: 8.0.0
-
 ##################################################
 # Values that must always be provided by the user.
 ##################################################

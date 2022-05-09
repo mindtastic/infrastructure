@@ -46,7 +46,6 @@ variable "teleport_acme_email" {
   type        = string
   description = "Email address for Email notifications from Let's Encrypt."
   default     = ""
-  sensitive   = true
 }
 
 variable "teleport_github_client_id" {
