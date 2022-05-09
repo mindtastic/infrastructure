@@ -9,6 +9,7 @@ module "teleport" {
   teleport_github_org           = var.teleport_github_org
 
   depends_on = [
-    google_container_cluster.primary
+    google_container_cluster.primary,
+    google_container_node_pool.primary_preemptible_nodes
   ]
 }
