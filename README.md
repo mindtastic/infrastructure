@@ -41,6 +41,9 @@ Running this command obtains credentials that are applied to all GCP API calls u
     terraform apply   # executing API calls, etc.
     terraform destroy # destroys infrastructure
 
+
+For access to Terraform Cloud, speak to someone from the infrastructure team.
+
 ## To test
 
 Exchange variable "google_container_cluster"
