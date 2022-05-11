@@ -1,5 +1,5 @@
 # Infrastructure
-The infrastructure that runs the mindtastic backend
+The infrastructure that runs the mindtastic backend.
 
 ## Terraform cloud
 
@@ -15,14 +15,34 @@ The actual execution of the plan must be started manually in the Terraform Cloud
 
     brew install --cask google-cloud-sdk
     brew install terraform
+    brew install kubectl
+    brew install teleport
+
+### Before developing
+
+After installing the requirements, go to teleport.mindtastic.lol and login with GitHub.
+
+Click on Kubernetes > "live-mindtastic" > connect and follow the instructions:
+
+    tsh login --proxy=teleport.mindtastic.lol:443 teleport.mindtastic.lol
+    tsh kube login live-mindtastic
+    kubectl get pods
 
 ## To run
 
-First, authenticate with Google Cloud
+First, authenticate with Google Cloud.
 
-    terraform init
-    terraform plan
-    terraform destroy
+    gcloud auth application-default login
+
+Running this command obtains credentials that are applied to all GCP API calls using the Application Default Credentials library, which terraform does too.
+
+    terraform init    # downloads provider
+    terraform plan    # creates execution plan
+    terraform apply   # executing API calls, etc.
+    terraform destroy # destroys infrastructure
+
+
+For access to Terraform Cloud, speak to someone from the infrastructure team.
 
 ## To test
 

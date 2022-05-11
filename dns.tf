@@ -9,6 +9,7 @@ resource "cloudflare_record" "live_mindtastic_lol" {
   # https://github.com/hashicorp/terraform/issues/30937
   # Since Terraform does not know the length of
   # `google_dns_managed_zone.live.name_servers` at plan time, we hardcode the number of servers here.
+  # Google always returns four nameserver to set as DNS records.
   # This works until it won't. If Google returns fewer servers, apply will fail. If Google returns more, we ignore them.
   count = 4
 
