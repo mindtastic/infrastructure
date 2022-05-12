@@ -49,6 +49,7 @@ resource "kubernetes_config_map" "github" {
   }
 
   data = {
+    "k8s-admin.yaml" = "${file("${path.module}/k8s-admin.yaml")}",
     "github.yaml" = "${templatefile("${path.module}/github.yaml", {
       teleport_github_client_id     = var.teleport_github_client_id
       teleport_github_client_secret = var.teleport_github_client_secret
