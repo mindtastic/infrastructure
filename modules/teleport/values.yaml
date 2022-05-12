@@ -146,6 +146,8 @@ extraVolumes:
     items:
     - key: github.yaml
       path: github.yaml
+    - key: k8s-admin.yaml
+      path: k8s-admin.yaml
 #- name: myvolume
 #  secret:
 #    secretName: testSecret
