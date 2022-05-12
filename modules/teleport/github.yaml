@@ -16,4 +16,4 @@ spec:
     - organization: ${teleport_github_org} # GitHub organization name
       team: admin            # GitHub team name within that organization
       # map GitHub's "admin" team to Teleport's "access" role
-      logins: ["access"]
+      logins: ["access", "k8s-admin"]
