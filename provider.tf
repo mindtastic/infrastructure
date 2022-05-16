@@ -6,6 +6,10 @@ terraform {
       source  = "hashicorp/google"
       version = "4.20.0"
     }
+    google-beta = {
+      source  = "hashicorp/google-beta"
+      version = "4.20.0"
+    }
     cloudflare = {
       source  = "cloudflare/cloudflare"
       version = "~> 3.0"
@@ -22,6 +26,12 @@ terraform {
 }
 
 provider "google" {
+  project     = var.project_name
+  region      = var.region
+  credentials = var.google_credential_file
+}
+
+provider "google-beta" {
   project     = var.project_name
   region      = var.region
   credentials = var.google_credential_file
