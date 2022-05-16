@@ -7,7 +7,7 @@ locals {
   ]
 }
 
-resource "google_project_service" "project" {
+resource "google_project_service" "services" {
   for_each = toset(local.services)
 
   project = var.project_name
