@@ -3,7 +3,6 @@ locals {
     "container.googleapis.com",
     "dns.googleapis.com",
     "iam.googleapis.com",
-    "artifactregistry.googleapis.com"
   ]
 }
 
