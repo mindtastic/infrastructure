@@ -13,3 +13,12 @@ module "teleport" {
     google_container_node_pool.primary_preemptible_nodes
   ]
 }
+
+module "sealed_secrets" {
+  source = "./modules/sealed-secrets"
+
+  depends_on = [
+    google_container_cluster.primary,
+    google_container_node_pool.primary_preemptible_nodes
+  ]
+}
