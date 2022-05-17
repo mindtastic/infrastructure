@@ -94,11 +94,11 @@ resource "helm_release" "teleport_agent" {
   ]
 
   set_sensitive {
-    name = "authToken"
+    name  = "authToken"
     value = random_uuid.teleport_node_join_token.result
   }
 
- set {
+  set {
     name  = "proxyAddr"
     value = "${var.teleport_domain}:443"
   }
