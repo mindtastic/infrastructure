@@ -81,7 +81,7 @@ data "kubernetes_service" "teleport" {
 }
 
 resource "helm_release" "teleport_agent" {
-  name             = local.teleport_release_name
+  name             = "teleport-kube-agent"
   repository       = "https://charts.releases.teleport.dev"
   chart            = "teleport-kube-agent"
   version          = "9.2.3"
