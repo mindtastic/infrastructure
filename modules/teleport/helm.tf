@@ -19,7 +19,7 @@ resource "helm_release" "teleport" {
   max_history      = 3
 
   values = [
-    "${file("${path.module}/values-cluster.yaml")}"
+    "${file("${path.module}/values.yaml")}"
   ]
 
   set {
@@ -78,33 +78,4 @@ data "kubernetes_service" "teleport" {
   }
 
   depends_on = [helm_release.teleport]
-}
-
-resource "helm_release" "teleport_agent" {
-  name             = "teleport-kube-agent"
-  repository       = "https://charts.releases.teleport.dev"
-  chart            = "teleport-kube-agent"
-  version          = "9.2.3"
-  create_namespace = true
-  namespace        = local.teleport_namespace
-  max_history      = 3
-
-  values = [
-    "${file("${path.module}/values-agent.yaml")}"
-  ]
-
-  set_sensitive {
-    name  = "authToken"
-    value = random_uuid.teleport_node_join_token.result
-  }
-
-  set {
-    name  = "proxyAddr"
-    value = "${var.teleport_domain}:443"
-  }
-
-  set {
-    name  = "kubeClusterName"
-    value = var.cluster_name
-  }
 }
