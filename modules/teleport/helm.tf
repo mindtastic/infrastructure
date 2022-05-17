@@ -13,13 +13,13 @@ resource "helm_release" "teleport" {
   name             = local.teleport_release_name
   repository       = "https://charts.releases.teleport.dev"
   chart            = "teleport-cluster"
-  version          = "9.2.1"
+  version          = "9.2.3"
   create_namespace = true
   namespace        = local.teleport_namespace
   max_history      = 3
 
   values = [
-    "${file("${path.module}/values.yaml")}"
+    "${file("${path.module}/values-cluster.yaml")}"
   ]
 
   set {
@@ -70,4 +70,20 @@ data "kubernetes_service" "teleport" {
   }
 
   depends_on = [helm_release.teleport]
+}
+
+resource "helm_release" "teleport_agent" {
+  name             = local.teleport_release_name
+  repository       = "https://charts.releases.teleport.dev"
+  chart            = "teleport-agent"
+  version          = "9.2.3"
+  create_namespace = true
+  namespace        = local.teleport_namespace
+  max_history      = 3
+
+  values = [
+    "${file("${path.module}/values-agent.yaml")}"
+  ]
+
+
 }
