@@ -26,6 +26,9 @@ module "sealed_secrets" {
 module "argo" {
   source = "./modules/argo"
 
+  argocd_github_client_id     = var.argocd_github_client_id
+  argocd_github_client_secret = var.argocd_github_client_secret
+
   depends_on = [
     google_container_cluster.primary,
     google_container_node_pool.primary_preemptible_nodes
