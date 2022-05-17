@@ -22,3 +22,12 @@ module "sealed_secrets" {
     google_container_node_pool.primary_preemptible_nodes
   ]
 }
+
+module "argo" {
+  source = "./modules/argo"
+
+  depends_on = [
+    google_container_cluster.primary,
+    google_container_node_pool.primary_preemptible_nodes
+  ]
+}
