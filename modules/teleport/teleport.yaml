@@ -31,3 +31,8 @@ proxy_service:
     email: ${teleport_acme_email}
 ssh_service:
   enabled: false
+app_service:
+  enabled: true
+  apps:
+  - name: sealedsecrets
+    uri: http://sealed-secrets.kube-system.svc.cluster.local:8080
