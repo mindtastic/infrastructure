@@ -42,9 +42,11 @@ resource "helm_release" "teleport" {
   ]
 }
 
+resource "random_uuid" "teleport_node_join_token" {}
+
 resource "kubernetes_config_map" "github" {
   metadata {
-    name      = "teleport-github-config"
+    name      = local.teleport_release_name
     namespace = local.teleport_namespace
   }
 
@@ -55,6 +57,12 @@ resource "kubernetes_config_map" "github" {
       teleport_github_client_secret = var.teleport_github_client_secret
       teleport_domain               = var.teleport_domain
       teleport_github_org           = var.teleport_github_org
+    })}",
+    "teleport.yaml" = "${templatefile("${path.module}/teleport.yaml", {
+      teleport_domain          = var.teleport_domain,
+      teleport_node_join_token = random_uuid.teleport_node_join_token.result,
+      cluster_name             = var.cluster_name,
+      teleport_acme_email      = var.teleport_acme_email,
     })}"
   }
 
@@ -85,5 +93,18 @@ resource "helm_release" "teleport_agent" {
     "${file("${path.module}/values-agent.yaml")}"
   ]
 
+  set_sensitive {
+    name = "authToken"
+    value = random_uuid.teleport_node_join_token.result
+  }
 
+ set {
+    name  = "proxyAddr"
+    value = "${var.teleport_domain}:443"
+  }
+
+  set {
+    name  = "kubeClusterName"
+    value = var.cluster_name
+  }
 }
