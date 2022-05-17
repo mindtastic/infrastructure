@@ -12,6 +12,9 @@ resource "helm_release" "argo_cd" {
   max_history      = 3
 
   values = [
-    "${file("${path.module}/values.yaml")}"
+    "${templatefile("${path.module}/values.yaml", {
+      github_client_id     = var.argocd_github_client_id,
+      github_client_secret = var.argocd_github_client_secret
+    })}"
   ]
 }

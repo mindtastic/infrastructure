@@ -12,9 +12,6 @@ resource "helm_release" "sealed_secrets" {
   max_history      = 3
 
   values = [
-    "${templatefile("${path.module}/values.yaml", {
-      github_client_id     = var.argocd_github_client_id,
-      github_client_secret = var.argocd_github_client_secret
-    })}"
+    "${file("${path.module}/values.yaml")}"
   ]
 }
