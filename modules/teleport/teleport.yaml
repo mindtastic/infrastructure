@@ -1,0 +1,33 @@
+teleport:
+  log:
+    severity: INFO
+    output: stderr
+    format:
+      output: text
+      extra_fields: ["timestamp","level","component","caller"]
+auth_service:
+  enabled: true
+  cluster_name: ${teleport_domain} #teleport.mindtastic.lol
+  authentication:
+    type: github
+    second_factor: otp
+  tokens:
+  - "node:${teleport_node_join_token}"
+kubernetes_service:
+  enabled: true
+  listen_addr: 0.0.0.0:3027
+  kube_cluster_name: ${cluster_name}
+proxy_service:
+  public_addr: "${teleport_domain}:443"
+  kube_listen_addr: 0.0.0.0:3026
+  mysql_listen_addr: 0.0.0.0:3036
+  postgres_listen_addr: 0.0.0.0:5432
+  postgres_public_addr: ${teleport_domain}:5432
+  mongo_listen_addr: 0.0.0.0:27017
+  mongo_public_addr: ${teleport_domain}:27017
+  enabled: true
+  acme:
+    enabled: true
+    email: ${teleport_acme_email}
+ssh_service:
+  enabled: false
