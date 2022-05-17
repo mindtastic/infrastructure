@@ -23,7 +23,7 @@ kubeClusterName: ""
 #  - name: grafana
 #    uri: http://localhost:3000
 apps:
-- name: SealedSecrets
+- name: sealedsecrets
   uri: http://sealed-secrets.kube-system.svc.cluster.local:8080
 
 # Manual database configuration mode
