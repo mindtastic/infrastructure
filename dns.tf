@@ -38,7 +38,7 @@ resource "cloudflare_record" "teleport_live_public" {
   ttl     = 1
 }
 
-resource "cloudflare_record" "teleport_live_public" {
+resource "cloudflare_record" "teleport_live_public_wildcard" {
   zone_id = var.cloudflare_zone_id
   name    = "*.teleport"
   value   = google_dns_record_set.teleport_internal.name
