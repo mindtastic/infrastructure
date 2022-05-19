@@ -1826,7 +1826,7 @@ configs:
     #   githubAppID: 1
     #   githubAppInstallationID: 2
     #   githubAppEnterpriseBaseUrl: https://ghe.example.com/api/v3
-    #   githubAppPrivateKey: |
+    #   githubAppteKey: |
     #     -----BEGIN OPENSSH PRIVATE KEY-----
     #     ...
     #     -----END OPENSSH PRIVATE KEY-----
@@ -1838,7 +1838,7 @@ configs:
     # These credentials can be used with any mindtastic repository
     # https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repository-credentials
     ssh-creds:
-     url: https://github.com/mindtastic 
+     url: git@github.com:mindtastic/deployments.git
      sshPrivateKey: "" # Set via helm.set_sensitive
 
   # -- Repositories list to be used by applications
@@ -1848,7 +1848,7 @@ configs:
     mindtastic-deployments:
       type: git
       name: deployments
-      url: https://github.com/mindtastic/deployments.git
+      url: git@github.com:mindtastic/deployments.git
     # istio-helm-repo:
     #   url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts
     #   name: istio.io
