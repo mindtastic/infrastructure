@@ -1846,8 +1846,9 @@ configs:
   ## Note: the last example in the list would use a repository credential template, configured under "configs.repositoryCredentials".
   repositories:
     mindtastic-deployments:
+      type: git
       name: deployments
-      url: https://github.com/mindtastic/deployments
+      url: https://github.com/mindtastic/deployments.git
     # istio-helm-repo:
     #   url: https://storage.googleapis.com/istio-prerelease/daily-build/master-latest-daily/charts
     #   name: istio.io
