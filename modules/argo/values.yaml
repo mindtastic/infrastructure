@@ -1820,7 +1820,7 @@ configs:
 
   # -- Repository credentials to be used as Templates for other repos
   ## Creates a secret for each key/value specified below to create repository credentials
-  credentialTemplates: {}
+  credentialTemplates:
     # github-enterprise-creds-1:
     #   url: https://github.com/argoproj
     #   githubAppID: 1
@@ -1834,12 +1834,12 @@ configs:
     #   url: https://github.com/argoproj
     #   password: my-password
     #   username: my-username
-    # ssh-creds:
-    #  url: git@github.com:argoproj-labs
-    #  sshPrivateKey: |
-    #    -----BEGIN OPENSSH PRIVATE KEY-----
-    #    ...
-    #    -----END OPENSSH PRIVATE KEY-----
+
+    # These credentials can be used with any mindtastic repository
+    # https://argo-cd.readthedocs.io/en/stable/operator-manual/declarative-setup/#repository-credentials
+    ssh-creds:
+     url: https://github.com/mindtastic 
+     sshPrivateKey: "" # Set via helm.set_sensitive
 
   # -- Repositories list to be used by applications
   ## Creates a secret for each key/value specified below to create repositories

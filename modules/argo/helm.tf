@@ -17,4 +17,9 @@ resource "helm_release" "argo_cd" {
       github_client_secret = var.argocd_github_client_secret
     })}"
   ]
+
+  set_sensitive {
+    name  = "configs.credentialTemplates.ssh-creds.sshPrivateKey"
+    value = var.argocd_github_private_key
+  }
 }
