@@ -1209,19 +1209,19 @@ server:
     #     - profile
     #     - email
 
+    dex.config: |
+      connectors:
+        - type: github
+          id: github
+          name: GitHub
+          config:
+            clientID: "${github_client_id}"
+            clientSecret: "${github_client_secret}"
+            orgs:
+              - name: mindtastic
+
   # -- Annotations to be added to Argo CD ConfigMap
   configAnnotations: {}
-
-  dex.config: |
-    connectors:
-      - type: github
-        id: github
-        name: GitHub
-        config:
-          clientID: "${github_client_id}"
-          clientSecret: "${github_client_secret}"
-          orgs:
-            - name: mindtastic
 
   # -- Argo CD rbac config ([Argo CD RBAC policy])
   ## Ref: https://github.com/argoproj/argo-cd/blob/master/docs/operator-manual/rbac.md
