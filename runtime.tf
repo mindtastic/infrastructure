@@ -28,6 +28,7 @@ module "argo" {
 
   argocd_github_client_id     = var.argocd_github_client_id
   argocd_github_client_secret = var.argocd_github_client_secret
+  argocd_github_private_key   = var.argocd_github_private_key
 
   depends_on = [
     google_container_cluster.primary,
