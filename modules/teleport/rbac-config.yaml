@@ -36,7 +36,7 @@ spec:
     - organization: ${teleport_github_org} # GitHub organization name
       team: admin            # GitHub team name within that organization
       # map GitHub's "admin" team to Teleport's "access" role
-      logins: ["access", "k8s-admin"]
+      logins: ["access", "editor", "k8s-admin"]
     - organization: ${teleport_github_org} # GitHub organization name
       team: readonly
       logins: ["access", "k8s-readonly"]
