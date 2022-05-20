@@ -1221,6 +1221,7 @@ server:
               - name: mindtastic
                 teams:
                 - admin
+                - readonly
             loadAllGroups: false
 
   # -- Annotations to be added to Argo CD ConfigMap
@@ -1238,6 +1239,7 @@ server:
     policy.csv: |
       # All members of admin team are admins
       g, mindtastic:admin, role:admin
+      g, mindtastic:readonly, role:readonly
     # # Grant all members of the group 'mindtastic:admin' the ability to sync apps in all projects
     # p, mindtastic:admin, applications, sync, */*, allow
     # # Grant all members of 'mindtastic:admin' admins
