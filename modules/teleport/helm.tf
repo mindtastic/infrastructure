@@ -39,7 +39,7 @@ resource "helm_release" "teleport" {
 
   depends_on = [
     kubernetes_cluster_role_binding.readonly_group,
-    kubernetes_config_map.github
+    kubernetes_config_map.rbac
   ]
 }
 
