@@ -38,11 +38,28 @@ resource "helm_release" "teleport" {
   }
 
   depends_on = [
+    kubernetes_cluster_role_binding.readonly_group,
     kubernetes_config_map.github
   ]
 }
 
 resource "random_uuid" "teleport_node_join_token" {}
+
+resource "kubernetes_cluster_role_binding" "readonly_group" {
+  metadata {
+    name = "teleport-readonly-group"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "view" # Default view role 
+  }
+  subject {
+    kind      = "Group"
+    name      = "teleport:readonly"
+    api_group = "rbac.authorization.k8s.io"
+  }
+}
 
 resource "kubernetes_config_map" "github" {
   metadata {
