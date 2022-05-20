@@ -38,11 +38,28 @@ resource "helm_release" "teleport" {
   }
 
   depends_on = [
+    kubernetes_cluster_role_binding.readonly_group,
     kubernetes_config_map.github
   ]
 }
 
 resource "random_uuid" "teleport_node_join_token" {}
+
+resource "kubernetes_cluster_role_binding" "readonly_group" {
+  metadata {
+    name = "teleport-readonly-group"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "view" # Default view role 
+  }
+  subject {
+    kind      = "Group"
+    name      = "teleport:readonly"
+    api_group = "rbac.authorization.k8s.io"
+  }
+}
 
 resource "kubernetes_config_map" "github" {
   metadata {
@@ -51,11 +68,10 @@ resource "kubernetes_config_map" "github" {
   }
 
   data = {
-    "k8s-admin.yaml" = "${file("${path.module}/k8s-admin.yaml")}",
-    "github.yaml" = "${templatefile("${path.module}/github.yaml", {
+    "rbac-config.yaml" = "${templatefile("${path.module}/rbac-config.yaml", {
+      teleport_domain               = var.teleport_domain
       teleport_github_client_id     = var.teleport_github_client_id
       teleport_github_client_secret = var.teleport_github_client_secret
-      teleport_domain               = var.teleport_domain
       teleport_github_org           = var.teleport_github_org
     })}",
     "teleport.yaml" = "${templatefile("${path.module}/teleport.yaml", {
