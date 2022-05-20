@@ -1,3 +1,23 @@
+kind: role
+version: v5
+metadata:
+  name: k8s-admin
+spec:
+  allow:
+    kubernetes_groups: ["system:masters"]
+    kubernetes_labels:
+      '*': '*'
+---
+kind: role
+version: v5
+metadata:
+  name: k8s-readonly
+spec:
+  allow:
+    kubernetes_groups: ["teleport:readonly"]
+    kubernetes_labels:
+      '*': '*'
+---
 kind: github
 version: v3
 metadata:
@@ -20,23 +40,3 @@ spec:
     - organization: ${teleport_github_org} # GitHub organization name
       team: readonly
       logins: ["access", "k8s-readonly"]
----
-kind: role
-version: v5
-metadata:
-  name: k8s-admin
-spec:
-  allow:
-    kubernetes_groups: ["system:masters"]
-    kubernetes_labels:
-      '*': '*'
----
-kind: role
-version: v5
-metadata:
-  name: k8s-readonly
-spec:
-  allow:
-    kubernetes_groups: ["teleport:readonly"]
-    kubernetes_labels:
-      '*': '*'

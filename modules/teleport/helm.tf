@@ -61,7 +61,7 @@ resource "kubernetes_cluster_role_binding" "readonly_group" {
   }
 }
 
-resource "kubernetes_config_map" "github" {
+resource "kubernetes_config_map" "rbac" {
   metadata {
     name      = local.teleport_release_name
     namespace = local.teleport_namespace
