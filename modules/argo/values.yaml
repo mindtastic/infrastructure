@@ -579,7 +579,7 @@ dex:
 ## Redis
 redis:
   # -- Enable redis
-  enabled: false
+  enabled: true
   # -- Redis name
   name: redis
 
@@ -660,13 +660,13 @@ redis:
     automountServiceAccountToken: false
 
   # -- Resource limits and requests for redis
-  resources: {}
-  #  limits:
-  #    cpu: 200m
-  #    memory: 128Mi
-  #  requests:
-  #    cpu: 100m
-  #    memory: 64Mi
+  resources:
+    limits:
+      cpu: 200m
+      memory: 128Mi
+    requests:
+      cpu: 100m
+      memory: 64Mi
 
   # -- Additional volumeMounts to the redis container
   volumeMounts: []
@@ -700,7 +700,7 @@ redis:
 
   metrics:
     # -- Deploy metrics service and redis-exporter sidecar
-    enabled: false
+    enabled: true
     image:
       # -- redis-exporter image repository
       repository: bitnami/redis-exporter
@@ -711,13 +711,13 @@ redis:
     # -- Port to use for redis-exporter sidecar
     containerPort: 9121
     # -- Resource limits and requests for redis-exporter sidecar
-    resources: {}
-      # limits:
-      #   cpu: 50m
-      #   memory: 64Mi
-      # requests:
-      #   cpu: 10m
-      #   memory: 32Mi
+    resources:
+      limits:
+        cpu: 50m
+        memory: 64Mi
+      requests:
+        cpu: 10m
+        memory: 32Mi
     service:
       # -- Metrics service type
       type: ClusterIP
