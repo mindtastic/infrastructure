@@ -38,3 +38,5 @@ app_service:
     uri: http://sealed-secrets.kube-system.svc.cluster.local:8080
   - name: argocd
     uri: http://argo-cd-argocd-server.argocd.svc.cluster.local:80
+  - name: keycloak
+    uri: http://keycloak.keycloak.svc.cluster.local:8080
