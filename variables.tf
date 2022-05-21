@@ -14,7 +14,7 @@ variable "project_name" {
 variable "region" {
   type        = string
   description = "The region we want to deploy our cluster in."
-  default     = "europe-west3"
+  default     = "europe-north1"
 }
 
 variable "cloudflare_api_token" {
