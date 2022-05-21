@@ -39,4 +39,4 @@ app_service:
   - name: argocd
     uri: http://argo-cd-argocd-server.argocd.svc.cluster.local:80
   - name: keycloak
-    uri: http://keycloak.keycloak.svc.cluster.local:8080
+    uri: http://keycloak.keycloak.svc.cluster.local:80
