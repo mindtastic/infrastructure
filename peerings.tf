@@ -1,16 +1,16 @@
 data "tfe_outputs" "dev" {
-  organization = var.tfc_organization
-  workspace    = var.dev_workspace_name
+  organization = local.tfc_organization
+  workspace    = local.dev_workspace_name
 }
 
 data "tfe_outputs" "stage" {
-  organization = var.tfc_organization
-  workspace    = var.stage_workspace_name
+  organization = local.tfc_organization
+  workspace    = local.stage_workspace_name
 }
 
 data "tfe_outputs" "live" {
-  organization = var.tfc_organization
-  workspace    = var.live_workspace_name
+  organization = local.tfc_organization
+  workspace    = local.live_workspace_name
 }
 
 # DEV <-> LIVE
