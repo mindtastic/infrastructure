@@ -14,7 +14,7 @@ module "cluster_dev" {
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables = {
-    project_name             = ""
+    project_name             = "opentelemetry-benchmark"
     environment              = "dev"
     region                   = "europe-north1"
     k8s_node_subnet          = "10.10.0.0/28"
