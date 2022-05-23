@@ -1,6 +1,10 @@
 data "tfe_outputs" "dev_dns_nameservers" {
   organization = local.tfe_organization
   workspace    = "gke-cluster-dev"
+
+  depends_on = [
+    module.cluster_dev
+  ]
 }
 
 resource "cloudflare_record" "dev_mindtastic_lol" {
@@ -17,4 +21,8 @@ resource "cloudflare_record" "dev_mindtastic_lol" {
   value   = data.tfe_outputs.dev_dns_nameservers[count.index]
   type    = "NS"
   ttl     = 3600
+
+  depends_on = [
+    module.cluster_dev
+  ]
 }
