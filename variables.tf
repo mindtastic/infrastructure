@@ -35,3 +35,43 @@ variable "cloudflare_zone_id" {
   description = "ZoneID on Cloudflare where mindtastic.lol is hosted."
   default     = "9ad94d6aa6113ebb64214ec50fec17bf"
 }
+
+variable "live_runtime_teleport_acme_email" {
+  type      = string
+  sensitive = true
+}
+
+variable "live_runtime_teleport_github_client_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "live_runtime_teleport_github_client_secret" {
+  type      = string
+  sensitive = true
+}
+
+variable "live_runtime_teleport_domain" {
+  type      = string
+  sensitive = true
+}
+
+variable "live_runtime_teleport_github_org" {
+  type      = string
+  sensitive = true
+}
+
+variable "live_runtime_argocd_github_client_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "live_runtime_argocd_github_client_secret" {
+  type      = string
+  sensitive = true
+}
+
+variable "live_runtime_argocd_github_private_key" {
+  type      = string
+  sensitive = true
+}

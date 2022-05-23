@@ -43,7 +43,7 @@ module "cluster_stage" {
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
-  variables             = {
+  variables = {
     project_name             = "opentelemetry-benchmark"
     environment              = "stage"
     region                   = "europe-north1"
@@ -68,7 +68,7 @@ module "cluster_live" {
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
-  variables             = {
+  variables = {
     project_name             = "opentelemetry-benchmark"
     environment              = "live"
     region                   = "europe-north1"
@@ -78,6 +78,15 @@ module "cluster_live" {
     k8s_control_plane_subnet = "172.16.2.0/28"
     cluster_node_type        = "e2-medium"
     cluster_node_count       = 1
+
+    runtime_teleport_acme_email           = var.live_runtime_teleport_acme_email
+    runtime_teleport_github_client_id     = var.live_runtime_teleport_github_client_id
+    runtime_teleport_github_client_secret = var.live_runtime_teleport_github_client_secret
+    runtime_teleport_domain               = var.live_runtime_teleport_domain
+    runtime_teleport_github_org           = var.live_runtime_teleport_github_org
+    runtime_argocd_github_client_id       = var.live_runtime_argocd_github_client_id
+    runtime_argocd_github_client_secret   = var.live_runtime_argocd_github_client_secret
+    runtime_argocd_github_private_key     = var.live_runtime_argocd_github_private_key
   }
   sensitive_variables = {
     google_credential_file = var.google_credential_file

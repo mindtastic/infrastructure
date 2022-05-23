@@ -49,3 +49,42 @@ variable "cluster_node_count" {
   description = "Node Count for Kubernetes Nodes"
 }
 
+variable "runtime_teleport_acme_email" {
+  type      = string
+  sensitive = true
+}
+
+variable "runtime_teleport_github_client_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "runtime_teleport_github_client_secret" {
+  type      = string
+  sensitive = true
+}
+
+variable "runtime_teleport_domain" {
+  type      = string
+  sensitive = true
+}
+
+variable "runtime_teleport_github_org" {
+  type      = string
+  sensitive = true
+}
+
+variable "runtime_argocd_github_client_id" {
+  type      = string
+  sensitive = true
+}
+
+variable "runtime_argocd_github_client_secret" {
+  type      = string
+  sensitive = true
+}
+
+variable "runtime_argocd_github_private_key" {
+  type      = string
+  sensitive = true
+}
