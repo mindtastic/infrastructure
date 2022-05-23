@@ -34,7 +34,7 @@ resource "tfe_variable" "sensitive_terraform_cloud_variables" {
 }
 
 data "tfe_workspace" "parent" {
-  name         = "infrastructure-restructure"
+  name         = "infrastructure-restructuring"
   organization = var.organization
 }
 
