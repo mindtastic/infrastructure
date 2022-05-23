@@ -33,7 +33,7 @@ module "cluster_stage" {
   source = "./modules/workspace"
 
   organization          = local.tfe_organization
-  name                  = "gke-cluster-dev"
+  name                  = "gke-cluster-stage"
   auto_apply            = false
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
@@ -48,7 +48,7 @@ module "cluster_live" {
   source = "./modules/workspace"
 
   organization          = local.tfe_organization
-  name                  = "gke-cluster-dev"
+  name                  = "gke-cluster-live"
   auto_apply            = false
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
