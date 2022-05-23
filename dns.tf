@@ -11,7 +11,7 @@ resource "cloudflare_record" "dev_mindtastic_lol" {
 
   zone_id = var.cloudflare_zone_id
   name    = "dev"
-  value   = data.tfe_outputs.dev.dns_zone_names[count.index]
+  value   = data.tfe_outputs.dev.values.dns_zone_names[count.index]
   type    = "NS"
   ttl     = 3600
 
