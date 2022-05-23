@@ -1,14 +1,5 @@
 # This only works after the other workspaces exist!
 
-data "tfe_outputs" "dev" {
-  organization = local.tfe_organization
-  workspace    = local.dev_workspace_name
-
-  depends_on = [
-    module.cluster_dev
-  ]
-}
-
 resource "cloudflare_record" "dev_mindtastic_lol" {
   # This is a workaround to a problem rooted deeply within Terraform itself:
   # https://github.com/hashicorp/terraform/issues/30937
@@ -29,15 +20,6 @@ resource "cloudflare_record" "dev_mindtastic_lol" {
   ]
 }
 
-data "tfe_outputs" "stage" {
-  organization = local.tfe_organization
-  workspace    = local.stage_workspace_name
-
-  depends_on = [
-    module.cluster_stage
-  ]
-}
-
 resource "cloudflare_record" "stage_mindtastic_lol" {
   # This is a workaround to a problem rooted deeply within Terraform itself:
   # https://github.com/hashicorp/terraform/issues/30937
@@ -55,16 +37,6 @@ resource "cloudflare_record" "stage_mindtastic_lol" {
 
   depends_on = [
     module.cluster_stage
-  ]
-}
-
-
-data "tfe_outputs" "live" {
-  organization = local.tfe_organization
-  workspace    = local.live_workspace_name
-
-  depends_on = [
-    module.cluster_live
   ]
 }
 
