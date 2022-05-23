@@ -32,3 +32,13 @@ resource "tfe_variable" "sensitive_terraform_cloud_variables" {
   sensitive    = true
   workspace_id = tfe_workspace.workspace.id
 }
+
+data "tfe_workspace" "parent" {
+  name         = "infrastructure-restructure"
+  organization = var.organization
+}
+
+resource "tfe_run_trigger" "test" {
+  workspace_id  = tfe_workspace.workspace.id
+  sourceable_id = tfe_workspace.parent.id
+}
