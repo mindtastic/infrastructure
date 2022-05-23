@@ -31,7 +31,7 @@ resource "cloudflare_record" "stage_mindtastic_lol" {
 
   zone_id = var.cloudflare_zone_id
   name    = "stage"
-  value   = data.tfe_outputs.stage.dns_zone_names[count.index]
+  value   = data.tfe_outputs.stage.values.dns_zone_names[count.index]
   type    = "NS"
   ttl     = 3600
 
@@ -51,7 +51,7 @@ resource "cloudflare_record" "live_mindtastic_lol" {
 
   zone_id = var.cloudflare_zone_id
   name    = "live"
-  value   = data.tfe_outputs.live.dns_zone_names[count.index]
+  value   = data.tfe_outputs.live.values.dns_zone_names[count.index]
   type    = "NS"
   ttl     = 3600
 
