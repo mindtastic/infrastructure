@@ -1,6 +1,14 @@
 terraform {
   required_version = "~> 1.0"
 
+  backend "remote" {
+    organization = "mindtastic"
+
+    workspaces {
+      name = "infrastructure-global"
+    }
+  }
+
   required_providers {
     google = {
       source  = "hashicorp/google"
@@ -22,6 +30,10 @@ terraform {
       source  = "hashicorp/random"
       version = "3.1.3"
 
+    }
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = "0.31.0"
     }
   }
 }
@@ -53,4 +65,7 @@ provider "kubernetes" {
 }
 
 provider "random" {
+}
+
+provider "tfe" {
 }
