@@ -60,7 +60,7 @@ resource "google_container_node_pool" "primary_preemptible_nodes" {
   node_config {
     preemptible = true
     labels = {
-      environment = "production"
+      environment = var.environment
     }
     machine_type = var.cluster_node_type
 
