@@ -5,6 +5,12 @@ variable "google_credential_file" {
   sensitive   = true
 }
 
+variable "tfc_token" {
+  type        = string
+  description = "API Token for Terraform Cloud"
+  sensitive   = true
+}
+
 variable "project_name" {
   type        = string
   description = "Project name on Google Cloud."

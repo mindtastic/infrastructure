@@ -30,4 +30,5 @@ provider "cloudflare" {
 data "google_client_config" "default" {}
 
 provider "tfe" {
+  token = var.tfc_token
 }
