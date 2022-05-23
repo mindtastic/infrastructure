@@ -9,7 +9,7 @@ module "cluster_dev" {
 
   organization          = local.tfe_organization
   name                  = "gke-cluster-dev"
-  auto_apply            = true
+  auto_apply            = false
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
@@ -34,7 +34,7 @@ module "cluster_stage" {
 
   organization          = local.tfe_organization
   name                  = "gke-cluster-dev"
-  auto_apply            = true
+  auto_apply            = false
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
