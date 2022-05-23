@@ -69,8 +69,9 @@ module "cluster_peerings" {
   workspace_path        = "peerings"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables = {
-    project_name       = "opentelemetry-benchmark"
-    region             = "europe-north1"
+    tfc_organization     = local.tfe_organization
+    project_name         = "opentelemetry-benchmark"
+    region               = "europe-north1"
     dev_workspace_name   = module.cluster_dev.workspace_name
     stage_workspace_name = module.cluster_stage.workspace_name
     live_workspace_name  = module.cluster_live.workspace_name
