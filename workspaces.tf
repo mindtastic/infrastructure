@@ -41,7 +41,7 @@ module "cluster_stage" {
   name                  = local.stage_workspace_name
   auto_apply            = false
   repository            = local.github_repo
-  workspace_path        = "clusters/dev"
+  workspace_path        = "clusters/stage"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables = {
     project_name             = "opentelemetry-benchmark"
@@ -66,7 +66,7 @@ module "cluster_live" {
   name                  = local.live_workspace_name
   auto_apply            = false
   repository            = local.github_repo
-  workspace_path        = "clusters/dev"
+  workspace_path        = "clusters/live"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables = {
     project_name             = "opentelemetry-benchmark"
