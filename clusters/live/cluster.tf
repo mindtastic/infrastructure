@@ -42,7 +42,7 @@ resource "google_container_cluster" "primary" {
 
   master_authorized_networks_config {
     cidr_blocks {
-      cidr_block   = local.tfc_runner_ip
+      cidr_block   = "0.0.0.0/0" # local.tfc_runner_ip
       display_name = "Terraform Cloud Runner"
     }
   }
