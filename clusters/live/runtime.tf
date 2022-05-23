@@ -1,5 +1,5 @@
 module "teleport" {
-  source = "./modules/teleport"
+  source = "../../modules/teleport"
 
   cluster_name                  = var.cluster_name
   teleport_acme_email           = var.teleport_acme_email
@@ -15,7 +15,7 @@ module "teleport" {
 }
 
 module "sealed_secrets" {
-  source = "./modules/sealed-secrets"
+  source = "../../modules/sealed-secrets"
 
   depends_on = [
     google_container_cluster.primary,
@@ -24,7 +24,7 @@ module "sealed_secrets" {
 }
 
 module "argo" {
-  source = "./modules/argo"
+  source = "../../modules/argo"
 
   argocd_github_client_id     = var.argocd_github_client_id
   argocd_github_client_secret = var.argocd_github_client_secret
