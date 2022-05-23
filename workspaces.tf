@@ -1,12 +1,7 @@
 locals {
   tfe_organization = "mindtastic"
+  tfe_oauth_token_id = "ot-wwv4yMLk5usRLHzQ" # https://app.terraform.io/app/mindtastic/settings/version-control
   github_repo = "mindtastic/infrastructure"
-}
-
-resource "tfe_ssh_key" "mindtastic" {
-  name         = "mindtastic-ssh"
-  organization = local.tfe_organization
-  key          = "private-ssh-key"
 }
 
 module "cluster_dev" {
@@ -17,8 +12,7 @@ module "cluster_dev" {
   auto_apply            = true
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
-  github_oauth_token_id = ""
-  ssh_key_id            = ""
+  github_oauth_token_id = local.oauth_token_id
   variables             = {}
   sensitive_variables   = {}
 }
@@ -31,8 +25,7 @@ module "cluster_stage" {
   auto_apply            = true
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
-  github_oauth_token_id = ""
-  ssh_key_id            = ""
+  github_oauth_token_id = local.oauth_token_id
   variables             = {}
   sensitive_variables   = {}
 }
@@ -45,8 +38,7 @@ module "cluster_live" {
   auto_apply            = true
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
-  github_oauth_token_id = ""
-  ssh_key_id            = ""
+  github_oauth_token_id = local.oauth_token_id
   variables             = {}
   sensitive_variables   = {}
 }

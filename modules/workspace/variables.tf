@@ -28,11 +28,6 @@ variable "github_oauth_token_id" {
   description = "ID of VCS Oauth Token"
 }
 
-variable "ssh_key_id" {
-  type        = string
-  description = "ID of VCS SSH Key"
-}
-
 variable "variables" {
   type        = map(string)
   description = "Non-sensitive Variables to store in the workspace"

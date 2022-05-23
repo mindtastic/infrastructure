@@ -3,7 +3,6 @@ resource "tfe_workspace" "workspace" {
   organization      = var.organization
   auto_apply        = var.auto_apply
   execution_mode    = "remote"
-  ssh_key_id        = var.ssh_key_id
   terraform_version = "1.2.0"
 
   vcs_repo {
