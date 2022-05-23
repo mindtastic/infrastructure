@@ -12,7 +12,7 @@ module "cluster_dev" {
   auto_apply            = true
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
-  github_oauth_token_id = local.oauth_token_id
+  github_oauth_token_id = local.tfe_oauth_token_id
   variables             = {}
   sensitive_variables   = {}
 }
@@ -25,7 +25,7 @@ module "cluster_stage" {
   auto_apply            = true
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
-  github_oauth_token_id = local.oauth_token_id
+  github_oauth_token_id = local.tfe_oauth_token_id
   variables             = {}
   sensitive_variables   = {}
 }
@@ -38,7 +38,7 @@ module "cluster_live" {
   auto_apply            = true
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
-  github_oauth_token_id = local.oauth_token_id
+  github_oauth_token_id = local.tfe_oauth_token_id
   variables             = {}
   sensitive_variables   = {}
 }
