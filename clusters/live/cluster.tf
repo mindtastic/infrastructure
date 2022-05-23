@@ -1,5 +1,6 @@
 locals {
   tfc_runner_ip = "${chomp(data.http.tfc_runner_ip.body)}/32"
+  cluster_name  = "${var.environment}-gke-${var.region}"
 }
 
 resource "google_service_account" "default" {
@@ -8,7 +9,7 @@ resource "google_service_account" "default" {
 }
 
 resource "google_container_cluster" "primary" {
-  name     = "${var.environment}-gke-${var.region}"
+  name     = local.cluster_name
   location = var.region
 
   # We can't create a cluster with no node pool defined, but we want to only use

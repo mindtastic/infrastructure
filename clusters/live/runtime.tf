@@ -1,12 +1,12 @@
 module "teleport" {
   source = "../../modules/teleport"
 
-  cluster_name                  = var.cluster_name
-  teleport_acme_email           = var.teleport_acme_email
-  teleport_github_client_id     = var.teleport_github_client_id
-  teleport_github_client_secret = var.teleport_github_client_secret
-  teleport_domain               = var.teleport_domain
-  teleport_github_org           = var.teleport_github_org
+  cluster_name                  = local.cluster_name
+  teleport_acme_email           = var.runtime_teleport_acme_email
+  teleport_github_client_id     = var.runtime_teleport_github_client_id
+  teleport_github_client_secret = var.runtime_teleport_github_client_secret
+  teleport_domain               = var.runtime_teleport_domain
+  teleport_github_org           = var.runtime_teleport_github_org
 
   depends_on = [
     google_container_cluster.primary,
@@ -26,9 +26,9 @@ module "sealed_secrets" {
 module "argo" {
   source = "../../modules/argo"
 
-  argocd_github_client_id     = var.argocd_github_client_id
-  argocd_github_client_secret = var.argocd_github_client_secret
-  argocd_github_private_key   = var.argocd_github_private_key
+  argocd_github_client_id     = var.runtime_argocd_github_client_id
+  argocd_github_client_secret = var.runtime_argocd_github_client_secret
+  argocd_github_private_key   = var.runtime_argocd_github_private_key
 
   depends_on = [
     google_container_cluster.primary,
