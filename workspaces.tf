@@ -14,6 +14,7 @@ module "cluster_dev" {
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables = {
+    project_name             = ""
     environment              = "dev"
     region                   = "europe-north1"
     k8s_node_subnet          = "10.10.0.0/28"
@@ -23,7 +24,9 @@ module "cluster_dev" {
     cluster_node_type        = "e2-standard-4"
     cluster_node_count       = 3
   }
-  sensitive_variables = {}
+  sensitive_variables = {
+    google_credential_file = var.google_credential_file
+  }
 }
 
 module "cluster_stage" {
@@ -36,7 +39,9 @@ module "cluster_stage" {
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables             = {}
-  sensitive_variables   = {}
+  sensitive_variables = {
+    google_credential_file = var.google_credential_file
+  }
 }
 
 module "cluster_live" {
@@ -49,5 +54,7 @@ module "cluster_live" {
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables             = {}
-  sensitive_variables   = {}
+  sensitive_variables = {
+    google_credential_file = var.google_credential_file
+  }
 }

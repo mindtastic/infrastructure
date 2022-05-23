@@ -23,10 +23,11 @@ resource "tfe_variable" "terraform_cloud_variables" {
 }
 
 resource "tfe_variable" "sensitive_terraform_cloud_variables" {
-  for_each = var.sensitive_variables
+  # Small hack because Terraform does not allow referring to map keys that are marked as sensitive.
+  for_each = toset([for k, v in var.sensitive_variables : k])
 
   key          = each.key
-  value        = each.value
+  value        = var.sensitive_variables[each.key]
   category     = "terraform"
   sensitive    = true
   workspace_id = tfe_workspace.workspace.id

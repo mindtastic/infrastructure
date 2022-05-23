@@ -36,4 +36,5 @@ variable "variables" {
 variable "sensitive_variables" {
   type        = map(string)
   description = "Sensitive Variables to store in the workspace"
+  sensitive   = true
 }

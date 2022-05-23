@@ -30,11 +30,6 @@ variable "cloudflare_zone_id" {
   default     = "9ad94d6aa6113ebb64214ec50fec17bf"
 }
 
-variable "cluster_name" {
-  type        = string
-  description = "Name for the Kubernetes Cluster."
-  default     = "live-mindtastic"
-}
 
 variable "teleport_domain" {
   type        = string
