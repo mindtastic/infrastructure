@@ -43,7 +43,17 @@ module "cluster_stage" {
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
-  variables             = {}
+  variables             = {
+    project_name             = "opentelemetry-benchmark"
+    environment              = "stage"
+    region                   = "europe-north1"
+    k8s_node_subnet          = "10.20.0.0/28"
+    k8s_pod_subnet           = "10.21.0.0/16"
+    k8s_service_subnet       = "10.22.0.0/16"
+    k8s_control_plane_subnet = "172.16.1.0/28"
+    cluster_node_type        = "e2-medium"
+    cluster_node_count       = 1
+  }
   sensitive_variables = {
     google_credential_file = var.google_credential_file
   }
@@ -58,7 +68,17 @@ module "cluster_live" {
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
-  variables             = {}
+  variables             = {
+    project_name             = "opentelemetry-benchmark"
+    environment              = "live"
+    region                   = "europe-north1"
+    k8s_node_subnet          = "10.30.0.0/28"
+    k8s_pod_subnet           = "10.31.0.0/16"
+    k8s_service_subnet       = "10.32.0.0/16"
+    k8s_control_plane_subnet = "172.16.2.0/28"
+    cluster_node_type        = "e2-medium"
+    cluster_node_count       = 1
+  }
   sensitive_variables = {
     google_credential_file = var.google_credential_file
   }
