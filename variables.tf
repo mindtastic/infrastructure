@@ -11,6 +11,12 @@ variable "project_name" {
   default     = "opentelemetry-benchmark"
 }
 
+variable "region" {
+  type        = string
+  description = "The region we want to deploy our cluster in."
+  default     = "europe-north1"
+}
+
 variable "cloudflare_api_token" {
   type        = string
   description = "API Token generated on Leo's Cloudflare account."
