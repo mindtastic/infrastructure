@@ -8,6 +8,7 @@ resource "tfe_workspace" "workspace" {
   vcs_repo {
     identifier     = var.repository
     oauth_token_id = var.github_oauth_token_id
+    branch         = "leo/restructure"
   }
   working_directory = var.workspace_path
 }
@@ -23,7 +24,7 @@ resource "tfe_variable" "terraform_cloud_variables" {
 }
 
 resource "tfe_variable" "sensitive_terraform_cloud_variables" {
-  for_each =var.sensitive_variables
+  for_each = var.sensitive_variables
 
   key          = each.key
   value        = each.value
