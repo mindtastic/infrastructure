@@ -22,7 +22,7 @@ module "cluster_dev" {
     k8s_service_subnet       = "10.12.0.0/16"
     k8s_control_plane_subnet = "172.16.0.0/28"
     cluster_node_type        = "e2-medium"
-    cluster_node_count       = 3
+    cluster_node_count       = 1
   }
   sensitive_variables = {
     google_credential_file = var.google_credential_file
