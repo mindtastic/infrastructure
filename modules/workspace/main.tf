@@ -38,7 +38,7 @@ data "tfe_workspace" "parent" {
   organization = var.organization
 }
 
-resource "tfe_run_trigger" "test" {
+resource "tfe_run_trigger" "trigger" {
   workspace_id  = tfe_workspace.workspace.id
-  sourceable_id = tfe_workspace.parent.id
+  sourceable_id = data.tfe_workspace.parent.id
 }
