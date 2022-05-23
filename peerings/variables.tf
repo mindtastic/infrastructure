@@ -3,6 +3,12 @@ variable "tfc_organization" {
   description = "Terraform Cloud Organization name"
 }
 
+variable "google_credential_file" {
+  type        = string
+  description = "Authentication key for Google Cloud (JSON)."
+  sensitive   = true
+}
+
 variable "project_name" {
   type        = string
   description = "Project name on Google Cloud."
