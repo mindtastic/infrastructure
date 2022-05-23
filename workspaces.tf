@@ -58,3 +58,45 @@ module "cluster_live" {
     google_credential_file = var.google_credential_file
   }
 }
+
+module "cluster_peerings" {
+  source = "./modules/workspace"
+
+  organization          = local.tfe_organization
+  name                  = "gke-cluster-peerings"
+  auto_apply            = false
+  repository            = local.github_repo
+  workspace_path        = "peerings"
+  github_oauth_token_id = local.tfe_oauth_token_id
+  variables = {
+    project_name       = "opentelemetry-benchmark"
+    region             = "europe-north1"
+    dev_workspace_name   = module.cluster_dev.workspace_name
+    stage_workspace_name = module.cluster_stage.workspace_name
+    live_workspace_name  = module.cluster_live.workspace_name
+  }
+  sensitive_variables = {
+    google_credential_file = var.google_credential_file
+  }
+
+  depends_on = [
+    module.cluster_dev,
+    module.cluster_stage,
+    module.cluster_live
+  ]
+}
+
+# module "cluster_live" {
+#   source = "./modules/workspace"
+
+#   organization          = local.tfe_organization
+#   name                  = "gke-public-dns"
+#   auto_apply            = false
+#   repository            = local.github_repo
+#   workspace_path        = "dns"
+#   github_oauth_token_id = local.tfe_oauth_token_id
+#   variables             = {}
+#   sensitive_variables = {
+#     google_credential_file = var.google_credential_file
+#   }
+# }
