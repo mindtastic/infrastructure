@@ -22,7 +22,7 @@ module "cluster_dev" {
   variables = {
     project_name             = "opentelemetry-benchmark"
     environment              = "dev"
-    cluster_dns_zone_name    = "dev.${dns_root_zone_name}"
+    cluster_dns_zone_name    = "dev.${local.dns_root_zone_name}"
     region                   = "europe-north1"
     k8s_node_subnet          = "10.10.0.0/28"
     k8s_pod_subnet           = "10.11.0.0/16"
@@ -50,7 +50,7 @@ module "cluster_stage" {
   variables = {
     project_name             = "opentelemetry-benchmark"
     environment              = "stage"
-    cluster_dns_zone_name    = "stage.${dns_root_zone_name}"
+    cluster_dns_zone_name    = "stage.${local.dns_root_zone_name}"
     region                   = "europe-north1"
     k8s_node_subnet          = "10.20.0.0/28"
     k8s_pod_subnet           = "10.21.0.0/16"
@@ -78,7 +78,7 @@ module "cluster_live" {
   variables = {
     project_name             = "opentelemetry-benchmark"
     environment              = "live"
-    cluster_dns_zone_name    = "live.${dns_root_zone_name}"
+    cluster_dns_zone_name    = "live.${local.dns_root_zone_name}"
     region                   = "europe-north1"
     k8s_node_subnet          = "10.30.0.0/28"
     k8s_pod_subnet           = "10.31.0.0/16"
@@ -102,5 +102,31 @@ module "cluster_live" {
     runtime_teleport_github_client_secret = var.live_runtime_teleport_github_client_secret
     runtime_argocd_github_client_secret   = var.live_runtime_argocd_github_client_secret
     runtime_argocd_github_private_key     = var.live_runtime_argocd_github_private_key
+  }
+}
+
+module "cluster_networking" {
+  source = "./modules/workspace"
+
+  organization          = local.tfe_organization
+  name                  = local.networking_workspace_name
+  auto_apply            = false
+  repository            = local.github_repo
+  workspace_path        = "networking"
+  github_oauth_token_id = local.tfe_oauth_token_id
+  variables = {
+    tfc_organization   = local.tfe_organization
+    project_name       = "opentelemetry-benchmark"
+    region             = "europe-north1"
+    cloudflare_zone_id = var.cloudflare_zone_id
+
+    dev_workspace_name   = module.cluster_dev.workspace_name
+    stage_workspace_name = module.cluster_stage.workspace_name
+    live_workspace_name  = module.cluster_live.workspace_name
+  }
+  sensitive_variables = {
+    google_credential_file = var.google_credential_file
+    cloudflare_api_token   = var.cloudflare_api_token
+    tfc_token              = var.tfc_token
   }
 }

@@ -6,6 +6,14 @@ terraform {
       source  = "hashicorp/google"
       version = "4.20.0"
     }
+    cloudflare = {
+      source  = "cloudflare/cloudflare"
+      version = "~> 3.0"
+    }
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = "0.31.0"
+    }
   }
 }
 
@@ -15,4 +23,11 @@ provider "google" {
   credentials = var.google_credential_file
 }
 
-data "google_client_config" "default" {}
+provider "cloudflare" {
+  api_token = var.cloudflare_api_token
+}
+
+provider "tfe" {
+  token = var.tfc_token
+}
+

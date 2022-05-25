@@ -25,7 +25,7 @@ variable "region" {
 
 variable "cloudflare_api_token" {
   type        = string
-  description = "API Token generated on Leo's Cloudflare account."
+  description = "API Token to access the cloudflare API for the given zone id."
   default     = ""
   sensitive   = true
 }

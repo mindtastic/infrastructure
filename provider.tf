@@ -10,10 +10,6 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 3.0"
     }
-    tfe = {
-      source  = "hashicorp/tfe"
-      version = "0.31.0"
-    }
   }
 }
 
@@ -28,7 +24,3 @@ provider "cloudflare" {
 }
 
 data "google_client_config" "default" {}
-
-provider "tfe" {
-  token = var.tfc_token
-}

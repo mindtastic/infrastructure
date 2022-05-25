@@ -9,6 +9,24 @@ variable "google_credential_file" {
   sensitive   = true
 }
 
+variable "tfc_token" {
+  type        = string
+  description = "API Token for Terraform Cloud"
+  sensitive   = true
+}
+
+variable "cloudflare_api_token" {
+  type        = string
+  description = "API Token to access the cloudflare API for the given zone id."
+  sensitive   = true
+}
+
+variable "cloudflare_zone_id" {
+  type        = string
+  description = "ZoneID on Cloudflare where mindtastic.lol is hosted."
+  default     = "9ad94d6aa6113ebb64214ec50fec17bf"
+}
+
 variable "project_name" {
   type        = string
   description = "Project name on Google Cloud."
