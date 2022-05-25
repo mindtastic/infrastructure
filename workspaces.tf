@@ -79,11 +79,11 @@ module "cluster_live" {
     cluster_node_type        = "e2-medium"
     cluster_node_count       = 1
 
-    runtime_teleport_github_client_id     = var.live_runtime_teleport_github_client_id
-    runtime_argocd_github_client_id       = var.live_runtime_argocd_github_client_id
-    runtime_teleport_domain               = var.live_runtime_teleport_domain
-    runtime_teleport_github_org           = var.live_runtime_teleport_github_org
-    
+    runtime_teleport_github_client_id = var.live_runtime_teleport_github_client_id
+    runtime_argocd_github_client_id   = var.live_runtime_argocd_github_client_id
+    runtime_teleport_domain           = var.live_runtime_teleport_domain
+    runtime_teleport_github_org       = var.live_runtime_teleport_github_org
+
   }
   sensitive_variables = {
     google_credential_file = var.google_credential_file
