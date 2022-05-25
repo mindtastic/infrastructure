@@ -29,8 +29,9 @@ variable "github_oauth_token_id" {
 }
 
 variable "github_workspace_branch" {
-  type    = string
-  default = "Specify the branch of the github repo the workspace will operate on. If no branch name is provided, a Terraform Cloud environment variable will be used. If the env var is also not available, it defaults to master."
+  type        = string
+  description = "Specify the branch of the github repo the workspace will operate on. If no branch name is provided, a Terraform Cloud environment variable will be used. If the env var is also not available, it defaults to master."
+  default     = "" # Make variable optional for the use with coalesce
 }
 
 variable "variables" {
