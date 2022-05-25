@@ -44,4 +44,8 @@ variable "sensitive_variables" {
   description = "Sensitive Variables to store in the workspace"
 }
 
-variable "TFC_CONFIGURATION_VERSION_GIT_BRANCH" {}
+variable "TFC_CONFIGURATION_VERSION_GIT_BRANCH" {
+  type        = string
+  description = "Do not set this variable, it will be injected by terraform cloud. Use github_workspace_branch instead."
+  default     = ""
+}
