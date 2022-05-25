@@ -8,7 +8,7 @@ resource "tfe_workspace" "workspace" {
   vcs_repo {
     identifier     = var.repository
     oauth_token_id = var.github_oauth_token_id
-    branch         = "leo/restructure"
+    branch         = coalesce(var.github_workspace_branch, var.TFC_CONFIGURATION_VERSION_GIT_BRANCH, "leo/restructure")
   }
   working_directory = var.workspace_path
 }
