@@ -36,6 +36,12 @@ variable "cloudflare_zone_id" {
   default     = "9ad94d6aa6113ebb64214ec50fec17bf"
 }
 
+variable "root_domain_name" {
+  type        = string
+  description = "Name of the root domain for the zone that referenced by cloudflare_zone_id"
+  default     = "mindtastic.lol"
+}
+
 variable "live_runtime_teleport_acme_email" {
   type      = string
   sensitive = true
