@@ -40,6 +40,6 @@ variable "sensitive_variables" {
 
 variable "TFC_CONFIGURATION_VERSION_GIT_BRANCH" {
   type        = string
-  description = "Do not set this variable. Value will be injected by Terraform Cloud."
-  default     = ""
+  description = "Do not set this variable, it will be injected by terraform cloud. Use github_workspace_branch instead."
+  default     = "leo/restructure"
 }
