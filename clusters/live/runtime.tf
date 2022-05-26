@@ -1,5 +1,5 @@
 module "teleport" {
-  source = "../../modules/teleport"
+  source = "../../modules/teleport-cluster"
 
   cluster_name                  = local.cluster_name
   teleport_acme_email           = var.runtime_teleport_acme_email
@@ -7,6 +7,7 @@ module "teleport" {
   teleport_github_client_secret = var.runtime_teleport_github_client_secret
   teleport_domain               = var.runtime_teleport_domain
   teleport_github_org           = var.runtime_teleport_github_org
+  teleport_auth_token           = var.runtime_teleport_auth_token
 
   depends_on = [
     google_container_cluster.primary,

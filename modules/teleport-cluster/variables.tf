@@ -28,3 +28,8 @@ variable "teleport_github_org" {
   type        = string
   description = "GitHub Organisation for Teleport login."
 }
+
+variable "teleport_auth_token" {
+  type        = string
+  description = "Static Cluster join token for Teleport."
+}

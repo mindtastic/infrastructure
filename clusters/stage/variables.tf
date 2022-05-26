@@ -54,3 +54,12 @@ variable "cluster_node_count" {
   description = "Node Count for Kubernetes Nodes"
 }
 
+variable "runtime_teleport_proxy_address" {
+  type        = string
+  description = "Address of Teleport Proxy."
+}
+
+variable "runtime_teleport_auth_token" {
+  type        = string
+  description = "Static Cluster join token for Teleport."
+}
