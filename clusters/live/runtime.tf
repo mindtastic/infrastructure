@@ -10,7 +10,7 @@ module "teleport" {
 
   depends_on = [
     google_container_cluster.primary,
-    google_container_node_pool.primary_preemptible_nodes
+    google_container_node_pool.primary_nodes
   ]
 }
 
@@ -19,7 +19,7 @@ module "sealed_secrets" {
 
   depends_on = [
     google_container_cluster.primary,
-    google_container_node_pool.primary_preemptible_nodes
+    google_container_node_pool.primary_nodes
   ]
 }
 
@@ -32,6 +32,6 @@ module "argo" {
 
   depends_on = [
     google_container_cluster.primary,
-    google_container_node_pool.primary_preemptible_nodes
+    google_container_node_pool.primary_nodes
   ]
 }

@@ -52,14 +52,14 @@ resource "google_container_cluster" "primary" {
   ]
 }
 
-resource "google_container_node_pool" "primary_preemptible_nodes" {
+resource "google_container_node_pool" "primary_nodes" {
   name       = "${var.environment}-gke-${var.region}-nodes"
   location   = var.region
   cluster    = google_container_cluster.primary.name
   node_count = var.cluster_node_count
 
   node_config {
-    preemptible = true
+    preemptible = false
     labels = {
       environment = var.environment
     }
