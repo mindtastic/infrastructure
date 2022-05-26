@@ -22,7 +22,6 @@ module "cluster_dev" {
   variables = {
     project_name             = "opentelemetry-benchmark"
     environment              = "dev"
-    cluster_dns_zone_name    = "dev.${local.dns_root_zone_name}"
     region                   = "europe-north1"
     k8s_node_subnet          = "10.10.0.0/28"
     k8s_pod_subnet           = "10.11.0.0/16"
@@ -30,11 +29,9 @@ module "cluster_dev" {
     k8s_control_plane_subnet = "172.16.0.0/28"
     cluster_node_type        = "e2-medium"
     cluster_node_count       = 1
-    cloudflare_zone_id       = var.cloudflare_zone_id
   }
   sensitive_variables = {
     google_credential_file = var.google_credential_file
-    cloudflare_api_token   = var.cloudflare_api_token
   }
 }
 
@@ -58,11 +55,9 @@ module "cluster_stage" {
     k8s_control_plane_subnet = "172.16.1.0/28"
     cluster_node_type        = "e2-medium"
     cluster_node_count       = 1
-    cloudflare_zone_id       = var.cloudflare_zone_id
   }
   sensitive_variables = {
     google_credential_file = var.google_credential_file
-    cloudflare_api_token   = var.cloudflare_api_token
   }
 }
 
@@ -86,7 +81,6 @@ module "cluster_live" {
     k8s_control_plane_subnet = "172.16.2.0/28"
     cluster_node_type        = "e2-medium"
     cluster_node_count       = 1
-    cloudflare_zone_id       = var.cloudflare_zone_id
 
     runtime_teleport_github_client_id = var.live_runtime_teleport_github_client_id
     runtime_argocd_github_client_id   = var.live_runtime_argocd_github_client_id
@@ -96,7 +90,6 @@ module "cluster_live" {
   }
   sensitive_variables = {
     google_credential_file = var.google_credential_file
-    cloudflare_api_token   = var.cloudflare_api_token
 
     runtime_teleport_acme_email           = var.live_runtime_teleport_acme_email
     runtime_teleport_github_client_secret = var.live_runtime_teleport_github_client_secret
