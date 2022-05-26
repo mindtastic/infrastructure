@@ -13,12 +13,16 @@ data "google_compute_network" "stage_network" {
 locals {
   # GCP data provider returns an object where google_compute_networks where all
   # string attributes are set to tostring(null) if empty or networks not exist.
-  live_exists  = data.google_compute_network.live_network.self_link != "null"
-  dev_exists   = data.google_compute_network.dev_network.self_link != "null"
-  stage_exists = data.google_compute_network.stage_network.self_link != "null"
+  live_exists  = data.google_compute_network.live_network.self_link != tostring(null)
+  dev_exists   = data.google_compute_network.dev_network.self_link != tostring(null)
+  stage_exists = data.google_compute_network.stage_network.self_link != tostring(null)
 
   live_stage_exists = local.live_exists && local.stage_exists
   live_dev_exists   = local.live_exists && local.dev_exists
+
+  # Terraform GCP provider validates the network arguments on compute_network_peering
+  # 
+  invalid_fallback_network_uri = "projects/failure/global/networks/fail"
 }
 
 resource "google_compute_network_peering" "live_dev_peering" {
