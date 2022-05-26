@@ -4,6 +4,7 @@ resource "tfe_workspace" "workspace" {
   auto_apply        = var.auto_apply
   execution_mode    = "remote"
   terraform_version = "1.2.0"
+  queue_all_runs    = false
 
   vcs_repo {
     identifier     = var.repository
@@ -41,9 +42,4 @@ data "tfe_workspace" "parent" {
 resource "tfe_run_trigger" "trigger" {
   workspace_id  = tfe_workspace.workspace.id
   sourceable_id = data.tfe_workspace.parent.id
-
-  depends_on = [
-    tfe_variable.terraform_cloud_variables,
-    tfe_variable.sensitive_terraform_cloud_variables
-  ]
 }
