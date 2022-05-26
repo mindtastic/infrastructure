@@ -4,12 +4,6 @@ variable "google_credential_file" {
   sensitive   = true
 }
 
-variable "cloudflare_api_token" {
-  type        = string
-  description = "API Token to access the cloudflare API for the given zone id."
-  sensitive   = true
-}
-
 variable "project_name" {
   type        = string
   description = "Project name on Google Cloud."
@@ -23,6 +17,11 @@ variable "environment" {
 variable "region" {
   type        = string
   description = "The region we want to deploy our cluster in"
+}
+
+variable "cluster_dns_zone_name" {
+  type        = string
+  description = "The DNS name of the cluster zone"
 }
 
 variable "k8s_node_subnet" {
