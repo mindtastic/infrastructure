@@ -24,7 +24,7 @@ resource "helm_release" "teleport" {
 
   set {
     name  = "proxyAddr"
-    value = var.teleport_proxy_address
+    value = "${var.teleport_proxy_address}:443" # It it sufficient to point to the auth-service (https://goteleport.com/docs/kubernetes-access/getting-started/agent/)
   }
 
   set {
