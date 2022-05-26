@@ -16,6 +16,7 @@ module "cluster_dev" {
   organization          = local.tfe_organization
   name                  = local.dev_workspace_name
   auto_apply            = false
+  parent_workspace_name = var.TFC_WORKSPACE_NAME
   repository            = local.github_repo
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
@@ -42,6 +43,7 @@ module "cluster_stage" {
   organization          = local.tfe_organization
   name                  = local.stage_workspace_name
   auto_apply            = false
+  parent_workspace_name = var.TFC_WORKSPACE_NAME
   repository            = local.github_repo
   workspace_path        = "clusters/stage"
   github_oauth_token_id = local.tfe_oauth_token_id
@@ -68,6 +70,7 @@ module "cluster_live" {
   organization          = local.tfe_organization
   name                  = local.live_workspace_name
   auto_apply            = false
+  parent_workspace_name = var.TFC_WORKSPACE_NAME
   repository            = local.github_repo
   workspace_path        = "clusters/live"
   github_oauth_token_id = local.tfe_oauth_token_id

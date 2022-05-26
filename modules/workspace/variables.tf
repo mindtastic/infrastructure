@@ -8,6 +8,11 @@ variable "name" {
   description = "Workspace Name"
 }
 
+variable "parent_workspace_name" {
+  type        = string
+  description = "The current workspace that is used to created the workspace in the module."
+}
+
 variable "auto_apply" {
   type        = bool
   description = "Auto Apply this workspace"

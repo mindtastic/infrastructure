@@ -81,3 +81,9 @@ variable "live_runtime_argocd_github_private_key" {
   type      = string
   sensitive = true
 }
+
+variable "TFC_WORKSPACE_NAME" {
+  type        = string
+  description = "The name of the workspace used in this run."
+  default     = "infrastructure"
+}
