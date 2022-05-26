@@ -10,18 +10,9 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 3.0"
     }
-    kubernetes = {
-      source  = "hashicorp/kubernetes"
-      version = "2.11.0"
-    }
-    helm = {
-      source  = "hashicorp/helm"
-      version = "2.5.1"
-    }
-    random = {
-      source  = "hashicorp/random"
-      version = "3.1.3"
-
+    tfe = {
+      source  = "hashicorp/tfe"
+      version = "0.31.0"
     }
   }
 }
@@ -38,19 +29,6 @@ provider "cloudflare" {
 
 data "google_client_config" "default" {}
 
-provider "helm" {
-  kubernetes {
-    host                   = "https://${google_container_cluster.primary.endpoint}"
-    token                  = data.google_client_config.default.access_token
-    cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
-  }
-}
-
-provider "kubernetes" {
-  host                   = "https://${google_container_cluster.primary.endpoint}"
-  token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(google_container_cluster.primary.master_auth.0.cluster_ca_certificate)
-}
-
-provider "random" {
+provider "tfe" {
+  token = var.tfc_token
 }
