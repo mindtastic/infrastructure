@@ -37,3 +37,9 @@ variable "sensitive_variables" {
   type        = map(string)
   description = "Sensitive Variables to store in the workspace"
 }
+
+variable "TFC_CONFIGURATION_VERSION_GIT_BRANCH" {
+  type        = string
+  description = "Do not set this variable. Value will be injected by Terraform Cloud."
+  default     = ""
+}

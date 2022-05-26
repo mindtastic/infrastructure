@@ -2,11 +2,12 @@ locals {
   tfe_organization   = "mindtastic"
   tfe_oauth_token_id = "ot-wwv4yMLk5usRLHzQ" # https://app.terraform.io/app/mindtastic/settings/version-control
   github_repo        = "mindtastic/infrastructure"
+  dns_root_zone_name = "${var.root_domain_name}."
 
-  dev_workspace_name   = "gke-cluster-dev"
-  stage_workspace_name = "gke-cluster-stage"
-  live_workspace_name  = "gke-cluster-live"
-
+  dev_workspace_name        = "gke-cluster-dev"
+  stage_workspace_name      = "gke-cluster-stage"
+  live_workspace_name       = "gke-cluster-live"
+  networking_workspace_name = "cluster-internetworking"
 }
 
 module "cluster_dev" {
@@ -21,6 +22,7 @@ module "cluster_dev" {
   variables = {
     project_name             = "opentelemetry-benchmark"
     environment              = "dev"
+    cluster_dns_zone_name    = google_dns_managed_zone.dev_root.name
     region                   = "europe-north1"
     k8s_node_subnet          = "10.10.0.0/28"
     k8s_pod_subnet           = "10.11.0.0/16"
@@ -46,6 +48,7 @@ module "cluster_stage" {
   variables = {
     project_name             = "opentelemetry-benchmark"
     environment              = "stage"
+    cluster_dns_zone_name    = google_dns_managed_zone.stage_root.name
     region                   = "europe-north1"
     k8s_node_subnet          = "10.20.0.0/28"
     k8s_pod_subnet           = "10.21.0.0/16"
@@ -71,6 +74,8 @@ module "cluster_live" {
   variables = {
     project_name             = "opentelemetry-benchmark"
     environment              = "live"
+    cluster_dns_zone_name    = google_dns_managed_zone.live_root.name
+    cluster_dns_zone_name    = "live.${local.dns_root_zone_name}"
     region                   = "europe-north1"
     k8s_node_subnet          = "10.30.0.0/28"
     k8s_pod_subnet           = "10.31.0.0/16"

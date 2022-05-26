@@ -19,6 +19,11 @@ variable "region" {
   description = "The region we want to deploy our cluster in"
 }
 
+variable "cluster_dns_zone_name" {
+  type        = string
+  description = "The DNS name of the cluster zone"
+}
+
 variable "k8s_node_subnet" {
   type        = string
   description = "Subnet for Kubernetes Nodes"

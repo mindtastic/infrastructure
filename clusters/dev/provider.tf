@@ -6,10 +6,6 @@ terraform {
       source  = "hashicorp/google"
       version = "4.20.0"
     }
-    cloudflare = {
-      source  = "cloudflare/cloudflare"
-      version = "~> 3.0"
-    }
     kubernetes = {
       source  = "hashicorp/kubernetes"
       version = "2.11.0"
@@ -34,10 +30,6 @@ provider "google" {
   project     = var.project_name
   region      = var.region
   credentials = var.google_credential_file
-}
-
-provider "cloudflare" {
-  api_token = var.cloudflare_api_token
 }
 
 data "google_client_config" "default" {}

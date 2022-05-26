@@ -15,3 +15,8 @@ output "vpc_self_link" {
     google_compute_network.vpc_network
   ]
 }
+
+output "teleport_internal_dns_name" {
+  description = "Internal FQDN of teleport"
+  value       = google_dns_record_set.teleport_internal.name
+}

@@ -25,7 +25,7 @@ variable "region" {
 
 variable "cloudflare_api_token" {
   type        = string
-  description = "API Token generated on Leo's Cloudflare account."
+  description = "API Token to access the cloudflare API for the given zone id."
   default     = ""
   sensitive   = true
 }
@@ -34,6 +34,12 @@ variable "cloudflare_zone_id" {
   type        = string
   description = "ZoneID on Cloudflare where mindtastic.lol is hosted."
   default     = "9ad94d6aa6113ebb64214ec50fec17bf"
+}
+
+variable "root_domain_name" {
+  type        = string
+  description = "Name of the root domain for the zone that referenced by cloudflare_zone_id"
+  default     = "mindtastic.lol"
 }
 
 variable "live_runtime_teleport_acme_email" {
