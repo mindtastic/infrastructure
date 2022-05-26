@@ -110,3 +110,24 @@ module "cluster_live" {
     runtime_argocd_github_private_key     = var.live_runtime_argocd_github_private_key
   }
 }
+
+# Run trigger for creating cluster peerings after cluster workspaces applied
+data "tfe_workspace" "self" {
+  name         = var.TFC_WORKSPACE_NAME
+  organization = local.tfe_organization
+}
+
+resource "tfe_run_trigger" "live" {
+  workspace_id  = data.tfe_workspace.self.id
+  sourceable_id = module.cluster_live.workspace_id
+}
+
+resource "tfe_run_trigger" "dev" {
+  workspace_id  = data.tfe_workspace.self.id
+  sourceable_id = module.cluster_dev.workspace_id
+}
+
+resource "tfe_run_trigger" "stage" {
+  workspace_id  = data.tfe_workspace.self.id
+  sourceable_id = module.cluster_stage.workspace_id
+}
