@@ -11,6 +11,12 @@ variable "tfc_token" {
   sensitive   = true
 }
 
+variable "tfc_oauth_token" {
+  type        = string
+  description = "OAuth token for Terraform Cloud connector."
+  sensitive   = true
+}
+
 variable "project_name" {
   type        = string
   description = "Project name on Google Cloud."

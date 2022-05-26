@@ -1,6 +1,6 @@
 locals {
   tfe_organization   = "mindtastic"
-  tfe_oauth_token_id = "ot-wwv4yMLk5usRLHzQ" # https://app.terraform.io/app/mindtastic/settings/version-control
+  tfe_oauth_token_id = var.tfc_oauth_token # https://app.terraform.io/app/mindtastic/settings/version-control
   github_repo        = "mindtastic/infrastructure"
   dns_root_zone_name = "${var.root_domain_name}."
 
