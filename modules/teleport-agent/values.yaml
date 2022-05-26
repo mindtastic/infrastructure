@@ -9,7 +9,7 @@ authToken: "" # SET BY HELM
 # Address of the teleport proxy with port (usually :3080).
 proxyAddr: "" # SET BY HELM
 # Comma-separated list of roles to enable (any of: kube,db,app)
-roles: "kube,db,app"
+roles: "kube,app"
 
 ################################################################
 # Values that must be provided if Kubernetes access is enabled.
