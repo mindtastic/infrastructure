@@ -11,8 +11,8 @@ data "google_compute_network" "stage_network" {
 }
 
 locals {
-  live_stage_exists = data.google_compute_network.live_network.id != "" && data.google_compute_network.stage_network.id != ""
-  live_dev_exists   = data.google_compute_network.live_network.id != "" && data.google_compute_network.dev_network.id != ""
+  live_stage_exists = data.google_compute_network.live_network.self_link != "" && data.google_compute_network.stage_network.self_link != ""
+  live_dev_exists   = data.google_compute_network.live_network.self_link != "" && data.google_compute_network.dev_network.self_link != ""
 }
 
 resource "google_compute_network_peering" "live_dev_peering" {
