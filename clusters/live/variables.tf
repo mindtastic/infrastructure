@@ -93,3 +93,9 @@ variable "runtime_argocd_github_private_key" {
   type      = string
   sensitive = true
 }
+
+variable "runtime_teleport_auth_token" {
+  type        = string
+  sensitive   = true
+  description = "A token that can be used to join the teleport cluster."
+}
