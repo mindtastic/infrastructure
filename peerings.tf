@@ -21,34 +21,7 @@ locals {
   live_dev_exists   = local.live_vpc_exists && local.dev_vpc_exists
 }
 
-resource "google_compute_network_peering" "live_dev_peering" {
-  count = local.live_dev_exists ? 1 : 0
+# LIVE <-> DEV
 
-  name         = "live-dev-peering"
-  network      = data.google_compute_network.live_network.self_link
-  peer_network = data.google_compute_network.dev_network.self_link
-}
 
-resource "google_compute_network_peering" "dev_live_peering" {
-  count = local.live_dev_exists ? 1 : 0
-
-  name         = "dev-live-peering"
-  network      = data.google_compute_network.dev_network.self_link
-  peer_network = data.google_compute_network.live_network.self_link
-}
-
-resource "google_compute_network_peering" "live_stage_peering" {
-  count = local.live_stage_exists ? 1 : 0
-
-  name         = "live-stage-peering"
-  network      = data.google_compute_network.live_network.self_link
-  peer_network = data.google_compute_network.stage_network.self_link
-}
-
-resource "google_compute_network_peering" "stage_live_peering" {
-  count = local.live_stage_exists ? 1 : 0
-
-  name         = "stage-live-peering"
-  network      = data.google_compute_network.stage_network.self_link
-  peer_network = data.google_compute_network.live_network.self_link
-}
+# LIVE <-> STAGE
