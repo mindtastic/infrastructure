@@ -4,7 +4,7 @@ resource "cloudflare_record" "teleport_live_public" {
   name    = "teleport"
   value   = "teleport.net.live.mindtastic.lol"
   type    = "CNAME"
-  ttl     = 30
+  ttl     = 1
 }
 
 resource "cloudflare_record" "teleport_live_public_wildcard" {
@@ -12,5 +12,5 @@ resource "cloudflare_record" "teleport_live_public_wildcard" {
   name    = "*.teleport"
   value   = "teleport.net.live.mindtastic.lol"
   type    = "CNAME"
-  ttl     = 30
+  ttl     = 1
 }
