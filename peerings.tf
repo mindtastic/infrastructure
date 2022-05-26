@@ -19,10 +19,6 @@ locals {
 
   live_stage_exists = local.live_exists && local.stage_exists
   live_dev_exists   = local.live_exists && local.dev_exists
-
-  # Terraform GCP provider validates the network arguments on compute_network_peering
-  # 
-  invalid_fallback_network_uri = "projects/failure/global/networks/fail"
 }
 
 resource "google_compute_network_peering" "live_dev_peering" {
