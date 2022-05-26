@@ -11,8 +11,8 @@ data "google_compute_network" "stage_network" {
 }
 
 locals {
-  live_stage_exists = try(data.google_compute_network.live_network, false) && try(data.google_compute_network.stage_network, false)
-  live_dev_exists   = try(data.google_compute_network.live_network, false) && try(data.google_compute_network.dev_network, false)
+  live_stage_exists = can(data.google_compute_network.live_network) && can(data.google_compute_network.stage_network)
+  live_dev_exists   = can(data.google_compute_network.live_network) && can(data.google_compute_network.dev_network)
 }
 
 resource "google_compute_network_peering" "live_dev_peering" {
