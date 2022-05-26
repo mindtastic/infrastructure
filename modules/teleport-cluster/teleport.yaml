@@ -12,7 +12,7 @@ auth_service:
     type: github
     second_factor: otp
   tokens:
-  - "app:${teleport_node_join_token}"
+  - "kube:${teleport_node_join_token}"
 kubernetes_service:
   enabled: true
   listen_addr: 0.0.0.0:3027

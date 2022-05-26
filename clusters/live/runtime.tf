@@ -1,5 +1,5 @@
 module "teleport" {
-  source = "../../modules/teleport"
+  source = "../../modules/teleport-cluster"
 
   cluster_name                  = local.cluster_name
   teleport_acme_email           = var.runtime_teleport_acme_email

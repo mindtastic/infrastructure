@@ -31,9 +31,13 @@ module "cluster_dev" {
     k8s_control_plane_subnet = "172.16.0.0/28"
     cluster_node_type        = "e2-medium"
     cluster_node_count       = 1
+
+    runtime_teleport_proxy_address = var.live_runtime_teleport_domain
   }
   sensitive_variables = {
     google_credential_file = var.google_credential_file
+
+    runtime_teleport_auth_token = random_uuid.teleport_node_join_token.result
   }
 }
 
@@ -58,9 +62,13 @@ module "cluster_stage" {
     k8s_control_plane_subnet = "172.16.1.0/28"
     cluster_node_type        = "e2-medium"
     cluster_node_count       = 1
+
+    runtime_teleport_proxy_address = var.live_runtime_teleport_domain
   }
   sensitive_variables = {
     google_credential_file = var.google_credential_file
+
+    runtime_teleport_auth_token = random_uuid.teleport_node_join_token.result
   }
 }
 
@@ -95,6 +103,7 @@ module "cluster_live" {
   sensitive_variables = {
     google_credential_file = var.google_credential_file
 
+    runtime_teleport_auth_token           = random_uuid.teleport_node_join_token.result
     runtime_teleport_acme_email           = var.live_runtime_teleport_acme_email
     runtime_teleport_github_client_secret = var.live_runtime_teleport_github_client_secret
     runtime_argocd_github_client_secret   = var.live_runtime_argocd_github_client_secret

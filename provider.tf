@@ -14,6 +14,11 @@ terraform {
       source  = "hashicorp/tfe"
       version = "0.31.0"
     }
+    random = {
+      source  = "hashicorp/random"
+      version = "3.1.3"
+
+    }
   }
 }
 
@@ -31,4 +36,7 @@ data "google_client_config" "default" {}
 
 provider "tfe" {
   token = var.tfc_token
+}
+
+provider "random" {
 }
