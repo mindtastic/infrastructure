@@ -75,7 +75,6 @@ module "cluster_live" {
     project_name             = "opentelemetry-benchmark"
     environment              = "live"
     cluster_dns_zone_name    = google_dns_managed_zone.live_root.name
-    cluster_dns_zone_name    = "live.${local.dns_root_zone_name}"
     region                   = "europe-north1"
     k8s_node_subnet          = "10.30.0.0/28"
     k8s_pod_subnet           = "10.31.0.0/16"
