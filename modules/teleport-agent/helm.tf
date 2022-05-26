@@ -32,14 +32,13 @@ resource "helm_release" "teleport" {
     value = var.cluster_name
   }
 
-  set_sensitve {
+  set_sensitive {
     name  = "authToken"
     value = var.teleport_auth_token
   }
 
   depends_on = [
-    kubernetes_cluster_role_binding.readonly_group,
-    kubernetes_config_map.rbac
+    kubernetes_cluster_role_binding.readonly_group
   ]
 }
 
