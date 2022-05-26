@@ -1,15 +1,15 @@
 locals {
-  control_plane_ipv4_range = "172.16.0.0/28"
-  tfc_runner_ip            = "${chomp(data.http.tfc_runner_ip.body)}/32"
+  tfc_runner_ip = "${chomp(data.http.tfc_runner_ip.body)}/32"
+  cluster_name  = "${var.environment}-gke-${var.region}"
 }
 
 resource "google_service_account" "default" {
-  account_id   = "service-account-id"
-  display_name = "Service Account"
+  account_id   = "service-account-id-${var.environment}"
+  display_name = "Service Account Mindtastic ${var.environment}"
 }
 
 resource "google_container_cluster" "primary" {
-  name     = "k8s-gke-cluster"
+  name     = local.cluster_name
   location = var.region
 
   # We can't create a cluster with no node pool defined, but we want to only use
@@ -31,7 +31,7 @@ resource "google_container_cluster" "primary" {
   private_cluster_config {
     enable_private_nodes    = true
     enable_private_endpoint = false
-    master_ipv4_cidr_block  = local.control_plane_ipv4_range
+    master_ipv4_cidr_block  = var.k8s_control_plane_subnet
   }
 
   master_auth {
@@ -42,7 +42,7 @@ resource "google_container_cluster" "primary" {
 
   master_authorized_networks_config {
     cidr_blocks {
-      cidr_block   = "0.0.0.0/0" #local.tfc_runner_ip
+      cidr_block   = "0.0.0.0/0" # local.tfc_runner_ip
       display_name = "Terraform Cloud Runner"
     }
   }
@@ -52,18 +52,18 @@ resource "google_container_cluster" "primary" {
   ]
 }
 
-resource "google_container_node_pool" "primary_preemptible_nodes" {
-  name       = "k8s-node-pool"
+resource "google_container_node_pool" "primary_nodes" {
+  name       = "${var.environment}-gke-${var.region}-nodes"
   location   = var.region
   cluster    = google_container_cluster.primary.name
-  node_count = 1
+  node_count = var.cluster_node_count
 
   node_config {
-    preemptible = true
+    preemptible = false
     labels = {
-      environment = "production"
+      environment = var.environment
     }
-    machine_type = "e2-standard-4"
+    machine_type = var.cluster_node_type
 
     # Google recommends custom service accounts that have cloud-platform scope and permissions granted via IAM Roles.
     service_account = google_service_account.default.email

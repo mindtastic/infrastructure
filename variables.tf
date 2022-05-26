@@ -5,6 +5,12 @@ variable "google_credential_file" {
   sensitive   = true
 }
 
+variable "tfc_token" {
+  type        = string
+  description = "API Token for Terraform Cloud"
+  sensitive   = true
+}
+
 variable "project_name" {
   type        = string
   description = "Project name on Google Cloud."
@@ -19,7 +25,7 @@ variable "region" {
 
 variable "cloudflare_api_token" {
   type        = string
-  description = "API Token generated on Leo's Cloudflare account."
+  description = "API Token to access the cloudflare API for the given zone id."
   default     = ""
   sensitive   = true
 }
@@ -30,53 +36,48 @@ variable "cloudflare_zone_id" {
   default     = "9ad94d6aa6113ebb64214ec50fec17bf"
 }
 
-variable "cluster_name" {
+variable "root_domain_name" {
   type        = string
-  description = "Name for the Kubernetes Cluster."
-  default     = "live-mindtastic"
+  description = "Name of the root domain for the zone that referenced by cloudflare_zone_id"
+  default     = "mindtastic.lol"
 }
 
-variable "teleport_domain" {
-  type        = string
-  description = "Domain for teleport endpoint."
-  default     = "teleport.mindtastic.lol"
+variable "live_runtime_teleport_acme_email" {
+  type      = string
+  sensitive = true
 }
 
-variable "teleport_acme_email" {
-  type        = string
-  description = "Email address for Email notifications from Let's Encrypt."
+variable "live_runtime_teleport_github_client_id" {
+  type      = string
+  sensitive = true
 }
 
-variable "teleport_github_client_id" {
-  type        = string
-  description = "Client ID of GitHub OAuth app for Teleport login."
+variable "live_runtime_teleport_github_client_secret" {
+  type      = string
+  sensitive = true
 }
 
-variable "teleport_github_client_secret" {
-  type        = string
-  description = "Client Secret of GitHub OAuth app for Teleport login."
-  sensitive   = true
+variable "live_runtime_teleport_domain" {
+  type      = string
+  sensitive = true
 }
 
-variable "teleport_github_org" {
-  type        = string
-  description = "GitHub Organisation for Teleport login."
-  default     = "mindtastic"
+variable "live_runtime_teleport_github_org" {
+  type      = string
+  sensitive = true
 }
 
-variable "argocd_github_client_id" {
-  type        = string
-  description = "Client ID of GitHub OAuth app for ArgoCD login."
+variable "live_runtime_argocd_github_client_id" {
+  type      = string
+  sensitive = true
 }
 
-variable "argocd_github_client_secret" {
-  type        = string
-  description = "Client Secret of GitHub OAuth app for ArgoCD login."
-  sensitive   = true
+variable "live_runtime_argocd_github_client_secret" {
+  type      = string
+  sensitive = true
 }
 
-variable "argocd_github_private_key" {
-  type        = string
-  description = "Private Key that can be used to Access GitHub Repositories in the Organisation."
-  sensitive   = true
+variable "live_runtime_argocd_github_private_key" {
+  type      = string
+  sensitive = true
 }
