@@ -41,4 +41,9 @@ data "tfe_workspace" "parent" {
 resource "tfe_run_trigger" "trigger" {
   workspace_id  = tfe_workspace.workspace.id
   sourceable_id = data.tfe_workspace.parent.id
+
+  depends_on = [
+    tfe_variable.terraform_cloud_variables,
+    tfe_variable.sensitive_terraform_cloud_variables
+  ]
 }
