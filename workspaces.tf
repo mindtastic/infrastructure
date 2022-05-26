@@ -20,7 +20,7 @@ module "cluster_dev" {
   workspace_path        = "clusters/dev"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables = {
-    project_name             = "opentelemetry-benchmark"
+    project_name             = var.project_name
     environment              = "dev"
     cluster_dns_zone_name    = google_dns_managed_zone.dev_root.name
     region                   = "europe-north1"
@@ -46,7 +46,7 @@ module "cluster_stage" {
   workspace_path        = "clusters/stage"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables = {
-    project_name             = "opentelemetry-benchmark"
+    project_name             = var.project_name
     environment              = "stage"
     cluster_dns_zone_name    = google_dns_managed_zone.stage_root.name
     region                   = "europe-north1"
@@ -72,7 +72,7 @@ module "cluster_live" {
   workspace_path        = "clusters/live"
   github_oauth_token_id = local.tfe_oauth_token_id
   variables = {
-    project_name             = "opentelemetry-benchmark"
+    project_name             = var.project_name
     environment              = "live"
     cluster_dns_zone_name    = google_dns_managed_zone.live_root.name
     region                   = "europe-north1"
