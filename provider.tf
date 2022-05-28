@@ -10,6 +10,10 @@ terraform {
       source  = "cloudflare/cloudflare"
       version = "~> 3.0"
     }
+    kubernetes = {
+      source  = "hashicorp/kubernetes"
+      version = "2.11.0"
+    }
     tfe = {
       source  = "hashicorp/tfe"
       version = "0.31.0"
@@ -39,4 +43,10 @@ provider "tfe" {
 }
 
 provider "random" {
+}
+
+provider "kubernetes" {
+  host                   = "https://${data.google_container_cluster.live_cluster.endpoint}"
+  token                  = data.google_client_config.default.access_token
+  cluster_ca_certificate = base64decode(data.google_container_cluster.live_cluster.master_auth[0].cluster_ca_certificate)
 }
