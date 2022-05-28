@@ -50,7 +50,7 @@ resource "kubernetes_secret" "argocd_dev_cluster_secret" {
       "tlsClientConfig" = {
         "insecure"   = false,
         "caData"     = data.google_container_cluster.dev_cluster.master_auth[0].cluster_ca_certificate,
-        "serverName" = "https://${data.google_container_cluster.dev_cluster.endpoint}",
+        "serverName" = "kubernetes.default.svc.cluster.local",
       }
     })
   }
@@ -75,7 +75,7 @@ resource "kubernetes_secret" "argocd_stage_cluster_secret" {
       "tlsClientConfig" = {
         "insecure"   = false,
         "caData"     = data.google_container_cluster.stage_cluster.master_auth[0].cluster_ca_certificate,
-        "serverName" = "https://${data.google_container_cluster.stage_cluster.endpoint}",
+        "serverName" = " kubernetes.default.svc.cluster.local",
       }
     })
   }
