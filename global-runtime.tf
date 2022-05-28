@@ -44,7 +44,7 @@ resource "kubernetes_secret" "argocd_dev_cluster_secret" {
 
   data = {
     name   = "dev-cluster",
-    server = "cluster.net.dev.mindtastic.lol",
+    server = "https://cluster.net.dev.mindtastic.lol",
     config = jsonencode({
       "bearerToken" = data.google_client_config.default.access_token,
       "tlsClientConfig" = {
@@ -69,7 +69,7 @@ resource "kubernetes_secret" "argocd_stage_cluster_secret" {
 
   data = {
     name   = "stage-cluster",
-    server = "cluster.net.stage.mindtastic.lol",
+    server = "https://cluster.net.stage.mindtastic.lol",
     config = jsonencode({
       "bearerToken" = data.google_client_config.default.access_token,
       "tlsClientConfig" = {
