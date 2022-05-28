@@ -75,7 +75,7 @@ resource "kubernetes_secret" "argocd_stage_cluster_secret" {
       "tlsClientConfig" = {
         "insecure"   = false,
         "caData"     = data.google_container_cluster.stage_cluster.master_auth[0].cluster_ca_certificate,
-        "serverName" = " kubernetes.default.svc.cluster.local",
+        "serverName" = "kubernetes.default.svc.cluster.local",
       }
     })
   }
