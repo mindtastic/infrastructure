@@ -34,9 +34,9 @@ resource "helm_release" "teleport" {
 
   set {
     name = "labels"
-    value = yamlencode({
-      env = var.kubernetes_environment_label
-    })
+    value = {
+      "env" = var.kubernetes_environment_label
+    }
   }
 
   set_sensitive {
