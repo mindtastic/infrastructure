@@ -18,16 +18,6 @@ spec:
     kubernetes_labels:
       '*': '*'
 ---
-kind: role
-version: v5
-metadata:
-  name: k8s-external-viewer
-spec:
-  allow:
-    kubernetes_groups: ["teleport:customer"]
-    kubernetes_labels:
-      '*': '*'
----
 kind: github
 version: v3
 metadata:
@@ -49,4 +39,4 @@ spec:
       logins: ["access", "editor", "k8s-viewer", "k8s-developer"]
     - organization: ${teleport_github_org} # GitHub organization name
       team: readonly
-      logins: ["access", "k8s-external-viewer"]
+      logins: ["access", "k8s-viewer"]
