@@ -33,10 +33,8 @@ resource "helm_release" "teleport" {
   }
 
   set {
-    name = "labels"
-    value = {
-      "env" = var.kubernetes_environment_label
-    }
+    name  = "labels.env"
+    value = var.kubernetes_environment_label
   }
 
   set_sensitive {
