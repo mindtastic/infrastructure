@@ -32,6 +32,13 @@ resource "helm_release" "teleport" {
     value = var.cluster_name
   }
 
+  set {
+    name = "labels"
+    value = {
+      env = var.kubernetes_environment_label
+    }
+  }
+
   set_sensitive {
     name  = "authToken"
     value = var.teleport_auth_token
