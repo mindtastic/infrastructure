@@ -43,6 +43,18 @@ resource "helm_release" "teleport" {
   ]
 }
 
+resource "kubernetes_role" "customer_view" {
+  metadata {
+    name = "customer-view"
+  }
+
+  rule {
+    api_groups = [""]
+    resources  = ["pods", "services", "ingress", "nodes", "configmaps", "endpoints"]
+    verbs      = ["get", "watch", "list"]
+  }
+}
+
 resource "kubernetes_cluster_role_binding" "readonly_group" {
   metadata {
     name = "teleport-readonly-group"
@@ -55,6 +67,22 @@ resource "kubernetes_cluster_role_binding" "readonly_group" {
   subject {
     kind      = "Group"
     name      = "teleport:readonly"
+    api_group = "rbac.authorization.k8s.io"
+  }
+}
+
+resource "kubernetes_cluster_role_binding" "customer_readonly_group" {
+  metadata {
+    name = "teleport-readonly-customer-group"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "customer-view"
+  }
+  subject {
+    kind      = "Group"
+    name      = "teleport:customer"
     api_group = "rbac.authorization.k8s.io"
   }
 }
