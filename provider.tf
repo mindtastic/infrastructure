@@ -46,23 +46,23 @@ provider "random" {
 }
 
 provider "kubernetes" {
-  host                   = "https://${data.google_container_cluster.live_cluster.endpoint}"
+  host                   = try("https://${data.google_container_cluster.live_cluster.endpoint}", "")
   token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(data.google_container_cluster.live_cluster.master_auth[0].cluster_ca_certificate)
+  cluster_ca_certificate = try(base64decode(data.google_container_cluster.live_cluster.master_auth[0].cluster_ca_certificate), "")
 }
 
 provider "kubernetes" {
   alias = "dev_cluster"
 
-  host                   = "https://${data.google_container_cluster.dev_cluster.endpoint}"
+  host                   = try("https://${data.google_container_cluster.dev_cluster.endpoint}", "")
   token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(data.google_container_cluster.dev_cluster.master_auth[0].cluster_ca_certificate)
+  cluster_ca_certificate = try(base64decode(data.google_container_cluster.dev_cluster.master_auth[0].cluster_ca_certificate), "")
 }
 
 provider "kubernetes" {
   alias = "stage_cluster"
 
-  host                   = "https://${data.google_container_cluster.stage_cluster.endpoint}"
+  host                   = try("https://${data.google_container_cluster.stage_cluster.endpoint}", "")
   token                  = data.google_client_config.default.access_token
-  cluster_ca_certificate = base64decode(data.google_container_cluster.stage_cluster.master_auth[0].cluster_ca_certificate)
+  cluster_ca_certificate = try(base64decode(data.google_container_cluster.stage_cluster.master_auth[0].cluster_ca_certificate), "")
 }
