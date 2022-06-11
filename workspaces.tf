@@ -29,7 +29,7 @@ module "cluster_dev" {
     k8s_pod_subnet           = "10.11.0.0/16"
     k8s_service_subnet       = "10.12.0.0/16"
     k8s_control_plane_subnet = "172.16.0.0/28"
-    cluster_node_type        = "e2-medium"
+    cluster_node_type        = "e2-standard-2"
     cluster_node_count       = 1
 
     runtime_teleport_proxy_address = var.live_runtime_teleport_domain
