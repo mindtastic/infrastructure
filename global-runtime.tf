@@ -73,7 +73,7 @@ resource "kubernetes_secret" "argocd_dev_cluster_secret" {
       "bearerToken" = data.kubernetes_secret.dev_argocd_credentials[0].data["token"],
       "tlsClientConfig" = {
         "insecure"   = false,
-        "caData"     = data.kubernetes_secret.dev_argocd_credentials[0].data["ca.crt"],
+        "caData"     = base64encode(data.kubernetes_secret.dev_argocd_credentials[0].data["ca.crt"]),
         "serverName" = "kubernetes.default.svc.cluster.local",
       }
     })
@@ -123,7 +123,7 @@ resource "kubernetes_secret" "argocd_stage_cluster_secret" {
       "bearerToken" = data.kubernetes_secret.stage_argocd_credentials[0].data["token"],
       "tlsClientConfig" = {
         "insecure"   = false,
-        "caData"     = data.kubernetes_secret.stage_argocd_credentials[0].data["ca.crt"],
+        "caData"     = base64encode(data.kubernetes_secret.stage_argocd_credentials[0].data["ca.crt"]),
         "serverName" = "kubernetes.default.svc.cluster.local",
       }
     })
