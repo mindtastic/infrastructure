@@ -49,7 +49,8 @@ data "kubernetes_secret" "dev_argocd_credentials" {
   provider = kubernetes.dev_cluster
 
   metadata {
-    name = data.kubernetes_service_account.dev_argocd_manager[0].default_secret_name
+    name      = data.kubernetes_service_account.dev_argocd_manager[0].default_secret_name
+    namespace = local.argocd_sa_namespace
   }
 }
 
