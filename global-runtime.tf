@@ -70,7 +70,7 @@ resource "kubernetes_secret" "argocd_dev_cluster_secret" {
     name   = "dev-cluster",
     server = "https://cluster.net.dev.mindtastic.lol",
     config = jsonencode({
-      "bearerToken" = "Bearer ${data.kubernetes_secret.dev_argocd_credentials[0].data["token"]}",
+      "bearerToken" = data.kubernetes_secret.dev_argocd_credentials[0].data["token"],
       "tlsClientConfig" = {
         "insecure"   = false,
         "caData"     = base64encode(data.kubernetes_secret.dev_argocd_credentials[0].data["ca.crt"]),
@@ -120,7 +120,7 @@ resource "kubernetes_secret" "argocd_stage_cluster_secret" {
     name   = "stage-cluster",
     server = "https://cluster.net.stage.mindtastic.lol",
     config = jsonencode({
-      "bearerToken" = "Bearer ${data.kubernetes_secret.stage_argocd_credentials[0].data["token"]}",
+      "bearerToken" = data.kubernetes_secret.stage_argocd_credentials[0].data["token"],
       "tlsClientConfig" = {
         "insecure"   = false,
         "caData"     = base64encode(data.kubernetes_secret.stage_argocd_credentials[0].data["ca.crt"]),
