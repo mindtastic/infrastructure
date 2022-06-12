@@ -69,10 +69,10 @@ resource "kubernetes_secret" "argocd_dev_cluster_secret" {
     name   = "dev-cluster",
     server = "https://cluster.net.dev.mindtastic.lol",
     config = jsonencode({
-      "bearerToken" = data.kubernetes_secret.dev_argocd_credentials[0].binary_data["token"],
+      "bearerToken" = data.kubernetes_secret.dev_argocd_credentials.binary_data["token"],
       "tlsClientConfig" = {
         "insecure"   = false,
-        "caData"     = data.kubernetes_secret.dev_argocd_credentials[0].binary_data["ca.crt"],
+        "caData"     = data.kubernetes_secret.dev_argocd_credentials.binary_data["ca.crt"],
         "serverName" = "kubernetes.default.svc.cluster.local",
       }
     })
@@ -102,6 +102,14 @@ data "kubernetes_secret" "stage_argocd_credentials" {
   }
 }
 
+output "argocd_sa_dev_secret_name" {
+  value = data.kubernetes_service_account.dev_argocd_manager.default_secret_name
+}
+
+output "argocd_sa_stage_secret_name" {
+  value = data.kubernetes_service_account.stage_argocd_manager.default_secret_name
+}
+
 resource "kubernetes_secret" "argocd_stage_cluster_secret" {
   count = local.live_stage_cluster_exists ? 1 : 0
 
@@ -117,10 +125,10 @@ resource "kubernetes_secret" "argocd_stage_cluster_secret" {
     name   = "stage-cluster",
     server = "https://cluster.net.stage.mindtastic.lol",
     config = jsonencode({
-      "bearerToken" = data.kubernetes_secret.stage_argocd_credentials[0].binary_data["token"],
+      "bearerToken" = data.kubernetes_secret.stage_argocd_credentials.binary_data["token"],
       "tlsClientConfig" = {
         "insecure"   = false,
-        "caData"     = data.kubernetes_secret.stage_argocd_credentials[0].binary_data["ca.crt"],
+        "caData"     = data.kubernetes_secret.stage_argocd_credentials.binary_data["ca.crt"],
         "serverName" = "kubernetes.default.svc.cluster.local",
       }
     })
