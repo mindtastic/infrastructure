@@ -103,9 +103,6 @@ data "kubernetes_secret" "stage_argocd_credentials" {
   }
 }
 
-output "argocd_sa_dev_default_secret_name" {
-  value = data.kubernetes_service_account.dev_argocd_manager[0].default_secret_name
-}
 
 resource "kubernetes_secret" "argocd_stage_cluster_secret" {
   count = local.live_stage_cluster_exists ? 1 : 0
