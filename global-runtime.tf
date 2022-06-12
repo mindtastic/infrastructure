@@ -110,14 +110,6 @@ output "argo_sa_dev_secret_name" {
   value = data.kubernetes_service_account.dev_argocd_manager[0].secret[0]
 }
 
-output "argo_sa_stage_secret_name" {
-  value = data.kubernetes_service_account.stage_argocd_manager[0].secret[0]
-}
-
-output "argocd_sa_stage_secret_name" {
-  value = data.kubernetes_service_account.stage_argocd_manager[0].default_secret_name
-}
-
 resource "kubernetes_secret" "argocd_stage_cluster_secret" {
   count = local.live_stage_cluster_exists ? 1 : 0
 
