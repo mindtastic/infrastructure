@@ -102,8 +102,16 @@ data "kubernetes_secret" "stage_argocd_credentials" {
   }
 }
 
-output "argocd_sa_dev_secret_name" {
+output "argocd_sa_dev_default_secret_name" {
   value = data.kubernetes_service_account.dev_argocd_manager.default_secret_name
+}
+
+output "argo_sa_dev_secret_name" {
+  value = data.kubernetes_service_account.dev_argocd_manager.secret[0]
+}
+
+output "argo_sa_stage_secret_name" {
+  value = data.kubernetes_service_account.stage_argocd_manager.secret[0]
 }
 
 output "argocd_sa_stage_secret_name" {
