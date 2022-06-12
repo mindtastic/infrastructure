@@ -40,9 +40,3 @@ resource "kubernetes_cluster_role_binding" "argocd_manager" {
     namespace = local.argocd_sa_namespace
   }
 }
-
-data "kubernetes_secret" "argocd_token" {
-  metadata {
-    name = kubernetes_service_account.argocd_manager.default_secret_name
-  }
-}
