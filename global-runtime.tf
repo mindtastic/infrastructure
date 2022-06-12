@@ -107,7 +107,7 @@ output "argocd_sa_dev_default_secret_name" {
 }
 
 output "argo_sa_dev_secret_name" {
-  value = data.kubernetes_service_account.dev_argocd_manager[0].secret[0]
+  value = data.kubernetes_service_account.dev_argocd_manager[0].secret
 }
 
 resource "kubernetes_secret" "argocd_stage_cluster_secret" {
