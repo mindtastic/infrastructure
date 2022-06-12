@@ -99,7 +99,8 @@ data "kubernetes_secret" "stage_argocd_credentials" {
   provider = kubernetes.stage_cluster
 
   metadata {
-    name = data.kubernetes_service_account.stage_argocd_manager[0].secret[0].name
+    name      = data.kubernetes_service_account.stage_argocd_manager[0].default_secret_name
+    namespace = local.argocd_sa_namespace
   }
 }
 
