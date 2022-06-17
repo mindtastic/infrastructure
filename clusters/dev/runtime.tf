@@ -1,3 +1,22 @@
+# https://github.com/cilium/cilium/issues/19816#issuecomment-1144551910
+# With Dataplane V2 enabled (via `datapath_provider = "ADVANCED_DATAPATH"`), Cilium is installed.
+resource "kubernetes_cluster_role_binding_v1" "cilium_daplane_fix" {
+  metadata {
+    name = "cilium-node-patcher-gke-fix"
+  }
+  role_ref {
+    api_group = "rbac.authorization.k8s.io"
+    kind      = "ClusterRole"
+    name      = "system:node"
+  }
+  subject {
+    kind      = "ServiceAccount"
+    namespace = "kube-system"
+    name      = "cilium"
+    api_group = ""
+  }
+}
+
 module "teleport" {
   source = "../../modules/teleport-agent"
 
