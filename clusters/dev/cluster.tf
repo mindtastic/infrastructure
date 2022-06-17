@@ -40,6 +40,15 @@ resource "google_container_cluster" "primary" {
     }
   }
 
+  # https://github.com/terraform-google-modules/terraform-google-kubernetes-engine/issues/656
+  datapath_provider = "ADVANCED_DATAPATH"
+  network_policy {
+    # Enabling NetworkPolicy for clusters with DatapathProvider=ADVANCED_DATAPATH is not allowed (yields error)
+    enabled = false
+    # CALICO provider overrides datapath_provider setting, leaving Dataplane v2 disabled
+    provider = "PROVIDER_UNSPECIFIED"
+  }
+
   master_authorized_networks_config {
     cidr_blocks {
       cidr_block   = "0.0.0.0/0" # local.tfc_runner_ip
