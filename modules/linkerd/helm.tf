@@ -11,15 +11,15 @@ resource "helm_release" "linkerd" {
   namespace        = "linkerd"
   max_history      = 3
 
-  set {
+  set_sensitive {
     name  = "identityTrustAnchorsPEM"
     value = tls_self_signed_cert.root_certificate.cert_pem
   }
-  set {
+  set_sensitive {
     name  = "identity.issuer.tls.crtPEM"
     value = tls_self_signed_cert.root_certificate.cert_pem
   }
-  set {
+  set_sensitive {
     name  = "identity.issuer.tls.keyPEM"
     value = tls_private_key.root_private_key.private_key_pem
   }
