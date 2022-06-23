@@ -21,10 +21,10 @@ resource "helm_release" "linkerd" {
   }
   set_sensitive {
     name  = "identity.issuer.tls.crtPEM"
-    value = tls_self_signed_cert.root_certificate.cert_pem
+    value = tls_locally_signed_cert.intermediate_ca.ca_cert_pem
   }
   set_sensitive {
     name  = "identity.issuer.tls.keyPEM"
-    value = tls_private_key.root_private_key.private_key_pem
+    value = tls_private_key.intermediate_ca.private_key_pem
   }
 }
