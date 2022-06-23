@@ -12,10 +12,10 @@ resource "tls_cert_request" "intermediate_ca" {
   private_key_pem = tls_private_key.intermediate_ca.private_key_pem
 
   subject {
-    common_name  = "root.linkerd.cluster.local"
+    common_name  = "identity.linkerd.cluster.local"
     organization = "mindtastic"
   }
-  uris = ["root.linkerd.cluster.local"]
+  uris = ["identity.linkerd.cluster.local"]
 }
 
 resource "tls_locally_signed_cert" "intermediate_ca" {
