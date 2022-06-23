@@ -30,6 +30,7 @@ resource "helm_release" "linkerd" {
 
   set {
     name = "clusterNetworks"
+    type = "string"
     value = join(",", var.cluster_networks)
   }
 }
