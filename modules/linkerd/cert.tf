@@ -27,7 +27,7 @@ resource "tls_locally_signed_cert" "intermediate_ca" {
 
   validity_period_hours = 8760
   is_ca_certificate     = true
-  allowed_uses          = [
+  allowed_uses = [
     "cert_signing",
     "key_encipherment",
     "digital_signature",

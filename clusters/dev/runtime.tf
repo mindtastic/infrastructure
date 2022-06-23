@@ -62,10 +62,10 @@ resource "google_compute_firewall" "linkerd" {
   description = "Creates firewall rule for linkerd to Kubernetes nodes"
 
   allow {
-    protocol  = "tcp"
-    ports     = ["443","8443"]
+    protocol = "tcp"
+    ports    = ["443", "8443"]
   }
 
   source_ranges = [var.k8s_control_plane_subnet]
-  priority = 0
+  priority      = 0
 }
