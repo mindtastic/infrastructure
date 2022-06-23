@@ -43,8 +43,8 @@ resource "kubernetes_cluster_role_binding" "argocd_manager" {
 
 module "linkerd" {
   source = "../../modules/linkerd"
-  
-  cluster_networks = [var.k8s_node_subnet, var.k8s_pod_subnet, var.k8s_service_subnet, var.k8s_control_plane_subnet]
+
+  cluster_networks = [var.k8s_service_subnet, var.k8s_pod_subnet]
 
   depends_on = [
     google_container_cluster.primary,
