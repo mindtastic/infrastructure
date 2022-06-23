@@ -7,7 +7,7 @@ resource "helm_release" "linkerd" {
   repository       = "https://helm.linkerd.io/stable"
   chart            = "linkerd2"
   version          = "2.11.2"
-  create_namespace = false # The creates the namespace with some annotations.
+  create_namespace = true # The creates the namespace with some annotations.
   namespace        = "linkerd"
   max_history      = 3
 
