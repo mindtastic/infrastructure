@@ -48,4 +48,6 @@ module "linkerd" {
     google_container_cluster.primary,
     google_container_node_pool.primary_preemptible_nodes
   ]
+
+  cluster_networks = [var.k8s_node_subnet, var.k8s_pod_subnet, var.k8s_service_subnet, var.k8s_control_plane_subnet]
 }

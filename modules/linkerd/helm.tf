@@ -27,4 +27,9 @@ resource "helm_release" "linkerd" {
     name  = "identity.issuer.tls.keyPEM"
     value = tls_private_key.intermediate_ca.private_key_pem
   }
+
+  set {
+    name = "clusterNetworks"
+    value = join(",", var.cluster_networks)
+  }
 }
