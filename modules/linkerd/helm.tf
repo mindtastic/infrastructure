@@ -28,8 +28,8 @@ resource "helm_release" "linkerd" {
     value = tls_private_key.intermediate_ca.private_key_pem
   }
 
-  # set {
-  #   name = "clusterNetworks"
-  #   value = join(",", var.cluster_networks)
-  # }
+  set {
+    name = "clusterNetworks"
+    value = join(",", var.cluster_networks)
+  }
 }

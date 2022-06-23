@@ -43,18 +43,19 @@ resource "kubernetes_cluster_role_binding" "argocd_manager" {
 
 module "linkerd" {
   source = "../../modules/linkerd"
+  
+  cluster_networks = [var.k8s_node_subnet, var.k8s_pod_subnet, var.k8s_service_subnet, var.k8s_control_plane_subnet]
 
   depends_on = [
     google_container_cluster.primary,
-    google_container_node_pool.primary_preemptible_nodes
+    google_container_node_pool.primary_preemptible_nodes,
+    google_compute_firewall.linkerd
   ]
-
-  cluster_networks = [var.k8s_node_subnet, var.k8s_pod_subnet, var.k8s_service_subnet, var.k8s_control_plane_subnet]
 }
 
 # Needed to make Linkerd work on a private GKE cluster.
 # https://github.com/linkerd/linkerd2/issues/8707
-resource "google_compute_firewall" "rules" {
+resource "google_compute_firewall" "linkerd" {
   project     = var.project_name
   name        = "linkerd-${local.cluster_name}"
   network     = google_compute_network.vpc_network.self_link
