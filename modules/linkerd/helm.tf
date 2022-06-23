@@ -2,7 +2,7 @@ locals {
   release_name = "linkerd"
 }
 
-resource "helm_release" "sealed_secrets" {
+resource "helm_release" "linkerd" {
   name             = local.release_name
   repository       = "https://helm.linkerd.io/stable"
   chart            = "linkerd2"
