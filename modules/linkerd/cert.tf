@@ -43,6 +43,7 @@ resource "tls_self_signed_cert" "root_certificate" {
   }
 
   validity_period_hours = 8760
+  is_ca_certificate     = true
 
   allowed_uses = [
     "cert_signing",
