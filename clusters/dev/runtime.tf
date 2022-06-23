@@ -40,3 +40,12 @@ resource "kubernetes_cluster_role_binding" "argocd_manager" {
     namespace = local.argocd_sa_namespace
   }
 }
+
+module "teleport" {
+  source = "../../modules/linkerd"
+
+  depends_on = [
+    google_container_cluster.primary,
+    google_container_node_pool.primary_preemptible_nodes
+  ]
+}
