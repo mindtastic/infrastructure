@@ -11,6 +11,10 @@ resource "helm_release" "linkerd" {
   namespace        = "linkerd"
   max_history      = 3
 
+  set {
+    name  = "installNamespace"
+    value = false
+  }
   set_sensitive {
     name  = "identityTrustAnchorsPEM"
     value = tls_self_signed_cert.root_certificate.cert_pem
