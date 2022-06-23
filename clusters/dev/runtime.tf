@@ -41,7 +41,7 @@ resource "kubernetes_cluster_role_binding" "argocd_manager" {
   }
 }
 
-module "teleport" {
+module "linkerd" {
   source = "../../modules/linkerd"
 
   depends_on = [
