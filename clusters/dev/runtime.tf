@@ -51,3 +51,20 @@ module "linkerd" {
 
   cluster_networks = [var.k8s_node_subnet, var.k8s_pod_subnet, var.k8s_service_subnet, var.k8s_control_plane_subnet]
 }
+
+# Needed to make Linkerd work on a private GKE cluster.
+# https://github.com/linkerd/linkerd2/issues/8707
+resource "google_compute_firewall" "rules" {
+  project     = var.project_name
+  name        = "linkerd-${var.cluster_name}"
+  network     = google_compute_network.vpc_network.self_link
+  description = "Creates firewall rule for linkerd to Kubernetes nodes"
+
+  allow {
+    protocol  = "tcp"
+    ports     = ["443","8443"]
+  }
+
+  source_ranges = [var.k8s_control_plane_subnet]
+  priority = 0
+}
