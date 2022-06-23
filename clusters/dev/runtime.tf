@@ -56,7 +56,7 @@ module "linkerd" {
 # https://github.com/linkerd/linkerd2/issues/8707
 resource "google_compute_firewall" "rules" {
   project     = var.project_name
-  name        = "linkerd-${var.cluster_name}"
+  name        = "linkerd-${local.cluster_name}"
   network     = google_compute_network.vpc_network.self_link
   description = "Creates firewall rule for linkerd to Kubernetes nodes"
 
