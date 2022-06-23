@@ -13,6 +13,14 @@ resource "helm_release" "sealed_secrets" {
 
   set {
     name  = "identityTrustAnchorsPEM"
-    value = var.teleport_domain
+    value = tls_self_signed_cert.root_certificate.cert_pem
+  }
+  set {
+    name  = "identity.issuer.tls.crtPEM"
+    value = tls_self_signed_cert.root_certificate.cert_pem
+  }
+  set {
+    name  = "identity.issuer.tls.keyPEM"
+    value = tls_private_key.root_private_key.private_key_pem
   }
 }
