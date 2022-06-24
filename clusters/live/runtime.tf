@@ -44,7 +44,7 @@ module "linkerd" {
 
   depends_on = [
     google_container_cluster.primary,
-    google_container_node_pool.primary_preemptible_nodes,
+    google_container_node_pool.primary_nodes,
     google_compute_firewall.linkerd
   ]
 }
