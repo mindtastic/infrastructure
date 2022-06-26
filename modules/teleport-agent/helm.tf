@@ -39,7 +39,7 @@ resource "helm_release" "teleport" {
 
   set {
     name = "apps[0].uri"
-    value = "http://kube-prometheus-stack-grafana:monitoring.svc.cluster.local:3000"
+    value = "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:3000"
   }
 
   set {
