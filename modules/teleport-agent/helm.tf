@@ -33,12 +33,33 @@ resource "helm_release" "teleport" {
   }
 
   set {
-    name = "apps"
-    value = [
-      { name : "grafana-${var.kubernetes_environment_label}", uri : "http://kube-prometheus-stack-grafana:monitoring.svc.cluster.local:3000" },
-      { name : "jaeger-${var.kubernetes_environment_label}", uri : "http://jaeger.linkerd-viz.svc.cluster.local:16686" },
-      { name : "linkerd-${var.kubernetes_environment_label}", uri : "http://web.linkerd-viz.svc.cluster.local:8084" },
-    ]
+    name = "apps[0].name"
+    value = "grafana-${var.kubernetes_environment_label}"
+  }
+
+  set {
+    name = "apps[0].uri"
+    value = "http://kube-prometheus-stack-grafana:monitoring.svc.cluster.local:3000"
+  }
+
+  set {
+    name = "apps[1].name"
+    value = "jaeger-${var.kubernetes_environment_label}"
+  }
+
+  set {
+    name = "apps[1].uri"
+    value = "http://jaeger.linkerd-viz.svc.cluster.local:16686"
+  }
+
+  set {
+    name = "apps[2].name"
+    value = "linkerd-${var.kubernetes_environment_label}"
+  }
+
+  set {
+    name = "apps[2].uri"
+    value = "http://web.linkerd-viz.svc.cluster.local:8084"
   }
 
   set {
