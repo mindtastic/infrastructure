@@ -12,7 +12,7 @@ auth_service:
     type: github
     second_factor: otp
   tokens:
-  - "kube:${teleport_node_join_token}"
+  - "kube,app:${teleport_node_join_token}"
 kubernetes_service:
   enabled: true
   listen_addr: 0.0.0.0:3027
@@ -34,9 +34,5 @@ ssh_service:
 app_service:
   enabled: true
   apps:
-  - name: sealedsecrets
-    uri: http://sealed-secrets.kube-system.svc.cluster.local:8080
   - name: argocd
     uri: http://argo-cd-argocd-server.argocd.svc.cluster.local:80
-  - name: keycloak
-    uri: http://keycloak.keycloak.svc.cluster.local:80
