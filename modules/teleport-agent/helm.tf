@@ -35,9 +35,9 @@ resource "helm_release" "teleport" {
   set {
     name = "apps"
     value = yamlencode([
-      { name : "grafana-${kubernetes_environment_label}", uri : "http://kube-prometheus-stack-grafana:monitoring.svc.cluster.local:3000" },
-      { name : "jaeger-${kubernetes_environment_label}", uri : "http://jaeger.linkerd-viz.svc.cluster.local:16686" },
-      { name : "linkerd-${kubernetes_environment_label}", uri : "http://web.linkerd-viz.svc.cluster.local:8084" },
+      { name : "grafana-${var.kubernetes_environment_label}", uri : "http://kube-prometheus-stack-grafana:monitoring.svc.cluster.local:3000" },
+      { name : "jaeger-${var.kubernetes_environment_label}", uri : "http://jaeger.linkerd-viz.svc.cluster.local:16686" },
+      { name : "linkerd-${var.kubernetes_environment_label}", uri : "http://web.linkerd-viz.svc.cluster.local:8084" },
     ])
   }
 
