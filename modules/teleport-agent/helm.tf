@@ -50,7 +50,7 @@ resource "helm_release" "teleport" {
 
   set {
     name = "apps[0].rewrite.headers[0]"
-    value = "grafana-${var.kubernetes_environment_label}.${var.teleport_proxy_address}"
+    value = "Host: grafana-${var.kubernetes_environment_label}.${var.teleport_proxy_address}"
   }
 
   set {
