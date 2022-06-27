@@ -42,6 +42,17 @@ resource "helm_release" "teleport" {
     value = "http://kube-prometheus-stack-grafana.monitoring.svc.cluster.local:80"
   }
 
+  # The following two are necessary to fix Grafana Websocket upgrading and other stuff. Took me ages to find...
+  set {
+    name = "apps[0].public_addr"
+    value = "grafana-${var.kubernetes_environment_label}.${var.teleport_proxy_address}"
+  }
+
+  set {
+    name = "apps[0].rewrite.headers[0]"
+    value = "grafana-${var.kubernetes_environment_label}.${var.teleport_proxy_address}"
+  }
+
   set {
     name = "apps[1].name"
     value = "jaeger-${var.kubernetes_environment_label}"
