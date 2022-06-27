@@ -59,7 +59,7 @@ resource "google_compute_firewall" "linkerd" {
 
   allow {
     protocol = "tcp"
-    ports    = ["443", "8443"]
+    ports    = ["443", "8443", "8089"] # 8443 for proxy injector, 8089 for `tap`.
   }
 
   source_ranges = [var.k8s_control_plane_subnet]
