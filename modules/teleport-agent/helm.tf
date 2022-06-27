@@ -74,6 +74,16 @@ resource "helm_release" "teleport" {
   }
 
   set {
+    name = "apps[2].public_addr"
+    value = "linkerd-${var.kubernetes_environment_label}.${var.teleport_proxy_address}"
+  }
+
+  set {
+    name = "apps[2].rewrite.headers[0]"
+    value = "Host: linkerd-${var.kubernetes_environment_label}.${var.teleport_proxy_address}"
+  }
+
+  set {
     name  = "labels.env"
     value = var.kubernetes_environment_label
   }
