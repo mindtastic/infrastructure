@@ -91,8 +91,8 @@ module "cluster_live" {
     k8s_pod_subnet           = "10.31.0.0/16"
     k8s_service_subnet       = "10.32.0.0/16"
     k8s_control_plane_subnet = "172.16.2.0/28"
-    cluster_node_type        = "e2-medium"
-    cluster_node_count       = 1
+    cluster_node_type        = "e2-standard-4"
+    cluster_node_count       = 2
 
     runtime_teleport_github_client_id = var.live_runtime_teleport_github_client_id
     runtime_argocd_github_client_id   = var.live_runtime_argocd_github_client_id
